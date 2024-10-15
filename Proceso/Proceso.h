@@ -12,6 +12,8 @@ class Proceso {
     
         friend class Pila;
         friend class NodoPila;
+        friend class Cola;
+        friend class NodoCola;
 
     public:
         Proceso();
