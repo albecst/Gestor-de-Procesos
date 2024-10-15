@@ -10,8 +10,12 @@ class Proceso {
         int priority;
         int core;
     
+        friend class Pila;
+        friend class NodoPila;
+
     public:
-        Proceso(int PID, int PPID=1, int priority, int core);
+        Proceso();
+        Proceso(int PID, int PPID=1, int startTime, int lifetime, int priority, int core);
         ~Proceso();
 
         int getPID();
