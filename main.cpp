@@ -3,11 +3,14 @@
 #include "Pila.h"
 #include "Pila.cpp"
 #include <iostream>
+#include "Cola.cpp"
+#include "Cola.h"
 
 using namespace std;
 
 int main() {
 	Pila p;
+	Cola c;
 
 	p.push(1);
 	p.push(2);
