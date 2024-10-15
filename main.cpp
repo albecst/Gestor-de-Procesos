@@ -9,7 +9,6 @@
 #include "Proceso.cpp"
 using namespace std;
 
-
 //Necesitamos un mínimo de 10 procesos (p1...p10) que pertenecerán a una pila.
 //Una vez ya en la pila, los procesos serán enviados a uno de los 3 núcleos (3 colas), o a la cola de espera.
 

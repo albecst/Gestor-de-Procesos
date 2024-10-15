@@ -1,6 +1,9 @@
 #ifndef COLA_H
 #define COLA_H
 #include "NodoCola.h"
+#include "Proceso/Proceso.h"
+#include "Proceso/Proceso.cpp"
+
 class Cola
 {
 private:
@@ -9,10 +12,10 @@ private:
     int longitud;
 public:
     Cola(); ~Cola();
-    void push(char);
-    char first();
-    char last();
-    char pop();
+    void push(Proceso);
+    Proceso first();
+    Proceso last();
+    Proceso pop();
     bool isEmpty();
     void showQueue();
     int getLength();
