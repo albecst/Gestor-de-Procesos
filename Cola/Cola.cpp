@@ -1,6 +1,8 @@
 #include <iostream>
 #include "NodoCola.h"
 #include "Cola.h"
+#include "Proceso/Proceso.h"
+#include "Proceso/Proceso.cpp"
 using namespace std;
 
 Cola::Cola() {
@@ -12,9 +14,9 @@ Cola::Cola() {
 Cola::~Cola() {
 }
 
-void Cola::push(char elemento) {
+void Cola::push(Proceso proceso) {
     NodoCola *nuevo_nodo = new
-            NodoCola(elemento);
+            NodoCola(proceso);
     if (isEmpty()) {
         primero = nuevo_nodo;
         ultimo = nuevo_nodo;
@@ -25,9 +27,9 @@ void Cola::push(char elemento) {
     longitud++;
 }
 
-char Cola::pop() {
+Proceso Cola::pop() {
     if (!isEmpty()) {
-        char elemento = primero->elemento;
+        Proceso proceso = primero->proceso;
         NodoCola *aux = primero;
         if ((primero == ultimo) && (primero->siguiente == NULL)) {
             primero = NULL;
@@ -40,19 +42,19 @@ char Cola::pop() {
             delete(aux);
         }
         longitud--;
-        return elemento;
+        return proceso;
     }
 }
 
-char Cola::first() {
+Proceso Cola::first() {
     if (!isEmpty()) {
-        return primero->elemento;
+        return primero->proceso;
     }
 }
 
-char Cola::last() {
+Proceso Cola::last() {
     if (!isEmpty()) {
-        return ultimo->elemento;
+        return ultimo->proceso;
     }
 }
 
@@ -70,7 +72,7 @@ void Cola::showQueue() {
     if (isEmpty()) { cout << "Cola Vacía: " << endl; } else {
         cout << "Datos de la Cola: " << endl;
         while (aux) {
-            cout << aux->elemento << endl;
+            cout << aux->proceso << endl;
             aux = aux->siguiente;
         }
     }
@@ -84,7 +86,7 @@ void Cola::reverse() {
         c2.push(pop());
     }
     while (!c2.isEmpty()) {
-        char ultimo = c2.pop();
+        Proceso ultimo = c2.pop();
         while (!c2.isEmpty()) {
             c3.push(ultimo);
             ultimo = c2.pop();
@@ -164,11 +166,11 @@ void Cola::isSorted() {
 
     Cola aux;
     bool ordenada = true;
-    char valorAnterior = pop();
+    Proceso valorAnterior = pop();
     aux.push(valorAnterior);
 
     while (!isEmpty()) {
-        char valorActual = pop();
+        Proceso valorActual = pop();
         if (valorActual < valorAnterior) {
             ordenada = false;
         }
