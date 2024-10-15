@@ -1,7 +1,7 @@
-#include "Nodo.h"
-#include "Nodo.cpp"
-#include "Pila.h"
-#include "Pila.cpp"
+#include "Pila/NodoPila.h"
+#include "Pila/NodoPila.cpp"
+#include "Pila/Pila.h"
+#include "Pila/Pila.cpp"
 #include <iostream>
 #include "Cola.cpp"
 #include "Cola.h"
