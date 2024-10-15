@@ -1,14 +1,16 @@
 #include "Proceso.h"
 #include <ctime>
 
-Proceso::Proceso(int PID, int PPID = 1, int priority, int core)
+Proceso::Proceso() {}
+
+Proceso::Proceso(int PID, int PPID = 1, int startTime, int lifetime, int priority, int core)
 {
     PID = PID;
     PPID = PPID;
     lifetime = -1;
 
     // Calcular los minutos que han pasado desde medianoche
-    struct tm datetime;
+    /*struct tm datetime;
     time_t midnight;
     datetime.tm_hour = 0;
     datetime.tm_min = 0;
@@ -20,9 +22,12 @@ Proceso::Proceso(int PID, int PPID = 1, int priority, int core)
 
     int diff_horas = now.tm_hour - datetime.tm_hour;
     diff_horas *= 60;
-    int diff_mins = now.tm_min - datetime.tm_min;
+    int diff_mins = now.tm_min - datetime.tm_min
+    */
 
-    startTime = diff_horas + diff_mins;
+    //startTime = diff_horas + diff_mins;
+    
+    startTime = startTime;
     priority = priority;
     core = core;
 }

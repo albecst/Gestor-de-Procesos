@@ -1,6 +1,7 @@
 #ifndef PILA_H
 #define PILA_H
-#include "Nodo.h"
+#include "NodoPila.h"
+#include "Proceso.h"
 
 class Pila {
 	private:
@@ -8,15 +9,15 @@ class Pila {
 	public:
 		Pila();
 		~Pila();
-		void push(int n);
+		void push(Proceso p);
 		void pop();
-		int top();
+		Proceso top();
 		int length();
 		bool isEmpty();
 		void reverse();
 		void toString();
 		void showAll();
-		int last();
+		Proceso last();
 		void popLast();
 		void popRange(int n);
 		void concat(Pila sec);

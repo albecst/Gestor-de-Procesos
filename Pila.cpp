@@ -1,4 +1,5 @@
-#include "Nodo.h"
+#include "Proceso.h"
+#include "NodoPila.h"
 #include "Pila.h"
 #include <iostream>
 using namespace std;
@@ -14,8 +15,8 @@ Pila::~Pila() {
 }
 
 // Push item to the top
-void Pila::push(int n) {
-	pnodo nuevo = new Nodo(n, cima);
+void Pila::push(Proceso p) {
+	pnodo nuevo = new NodoPila(p, cima);
 	cima = nuevo;
 }
 
@@ -55,7 +56,7 @@ int Pila::length() {
 }
 
 // View the top (without popping)
-int Pila::top() {
+Proceso Pila::top() {
 	if(!isEmpty()) {
 		return cima->value;
 	} else {
@@ -64,9 +65,9 @@ int Pila::top() {
 }
 
 // View the bottom
-int Pila::last() {
+Proceso Pila::last() {
 	reverse();
-	int n = cima->value;
+	Proceso n = cima->value;
 	reverse();
 
 	return n;	
@@ -99,7 +100,7 @@ void Pila::toString() {
 	if(isEmpty()) {
 		cout << "La pila está vacía" << endl;		
 	} else {
-		cout << "Cima de la pila: " << cima->value << endl; 
+		cout << "Cima de la pila: " << cima->value.PID << endl; 
 	}
 }
 
@@ -108,7 +109,7 @@ void Pila::showAll() {
 	Pila tmp;
 
 	while(!isEmpty()) {
-		cout << cima->value << ", ";
+		cout << cima->value.PID << ", ";
 		tmp.push(cima->value);
 		pop();
 	}
@@ -149,7 +150,7 @@ bool Pila::isOrder() {
 	pnodo aux = cima;
 
 	while(aux->next != NULL && order) {
-		if(aux->value > aux->next->value) {
+		if(aux->value.PID > aux->next->value.PID) {
 			order = false;
 		}
 
