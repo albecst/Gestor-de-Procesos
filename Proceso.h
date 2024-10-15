@@ -6,6 +6,7 @@ class Proceso {
         int PID;
         int PPID;
         int startTime;
+        int lifetime;
         int priority;
         int core;
     
