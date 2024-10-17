@@ -7,5 +7,17 @@
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
 
+class Scheduler{
+    private:
+        Pila procesos;
+        Cola nucleo1;
+        Cola nucleo2;
+        Cola nucleo3;
+        Cola colaEspera;
+    public:
+        Scheduler();
+        ~Scheduler();
+        void simular(int minutos);
+};
 
 #endif
