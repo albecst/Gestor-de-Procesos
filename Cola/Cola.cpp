@@ -189,7 +189,26 @@ void Cola::isSorted() {
     }
 }
 
+//Para el scheduler
+void Cola::sortDesc() {
+    Pila pilaAux;  // Usaremos una pila auxiliar
+    while (!isEmpty()) {
+        Proceso procesoActual = pop();
 
+        while (!pilaAux.isEmpty() && pilaAux.top().getPriority() > procesoActual.getPriority()) {
+            push(pilaAux.top());
+            pilaAux.pop();
+        }
+
+        pilaAux.push(procesoActual);
+        }
+
+    // Volvemos a insertar los procesos desde la pila auxiliar a la cola
+    while (!pilaAux.isEmpty()) {
+        push(pilaAux.top());
+        pilaAux.pop();
+    }
+}
 
 
 
