@@ -1,7 +1,6 @@
 #include "scheduler.h"
 #include <iostream>
-#include <algorithm>
-#include <vector>
+using namespace std;
 
 Scheduler::Scheduler()
 {
@@ -16,10 +15,6 @@ Scheduler::~Scheduler()
 // Una vez hecho eso, meto en nucleo 1 2 y 3.
 // Cuando el tiempo de vida de un proceso llegue a 0, lo saco de la cola de nucleo
 // y meto otro proceso de la cola de espera
-
-//Ej: 1, 5, 7, 8, 3, 5
-//Necesito que en el primer paso: 8,3,5
-
 
 void Scheduler::simular(int minutos)
 {
