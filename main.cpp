@@ -21,7 +21,7 @@ int main() {
 	Cola colaEspera;
 
 	//1) Crear la pila de procesos, los procesos los creamos manualmente.
-	Proceso p1(1, 69, 0, 1);
+	Proceso p1(1, 1, 0, 1);
 	Proceso p2(2, 33, 9, 2);
 	Proceso p3(3, 214, 2, 3);
 	Proceso p4(4, 352, 7, 1);
