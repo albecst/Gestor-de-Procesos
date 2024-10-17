@@ -60,3 +60,22 @@ int Proceso::getStartTime()
 {
     return startTime;
 }
+
+int Proceso::getLifeTime()
+{
+    return lifeTime;
+}
+
+void Proceso::decrementLifeTime() {
+    if (lifeTime > 0)
+        lifeTime--;
+}
+
+void Proceso::toString(){
+    cout << "PID: " << PID << endl;
+    cout << "PPID: " << PPID << endl;
+    cout << "Start Time: " << startTime << endl;
+    cout << "Lifetime: " << lifeTime << endl;
+    cout << "Priority: " << priority << endl;
+    cout << "Core: " << core << endl;
+}

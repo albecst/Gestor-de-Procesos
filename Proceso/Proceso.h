@@ -25,6 +25,9 @@ class Proceso {
         int getStartTime();
         int getPriority();
         int getCore();
+        int getLifeTime();
+        void decrementLifeTime();
+        void toString();
 };
 
 typedef Proceso* pproceso;
