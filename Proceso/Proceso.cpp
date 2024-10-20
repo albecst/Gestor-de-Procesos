@@ -3,11 +3,11 @@
 
 Proceso::Proceso() {}
 
-Proceso::Proceso(int PID, int PPID = 1, int startTime, int lifetime, int priority, int core)
+Proceso::Proceso(int PID, int PPID = 1, int startTime, int lifeTime, int priority, int core)
 {
     PID = PID;
     PPID = PPID;
-    lifetime = -1;
+    lifeTime = -1;
 
     // Calcular los minutos que han pasado desde medianoche
     /*struct tm datetime;

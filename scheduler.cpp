@@ -1,4 +1,16 @@
 #include "scheduler.h"
+#include "Proceso/Proceso.h"
+#include "Proceso/Proceso.cpp"
+#include "Pila/NodoPila.h"
+#include "Pila/Pila.h"
+#include "Cola/Cola.h"
+#include "Cola/NodoCola.h"
+#include "Cola/NodoCola.cpp"
+#include "Cola/Cola.cpp"
+#include "Pila/NodoPila.cpp"
+#include "Pila/Pila.cpp"
+
+
 #include <iostream>
 using namespace std;
 
@@ -35,20 +47,20 @@ void Scheduler::simular(int minutos)
         if (!colaEspera.isEmpty())
         {
             p = colaEspera.pop();
-            if (nucleo1.isEmpty() && p.getNucleo() == 1)
+            if (nucleo1.isEmpty() && p.getCore() == 1)
             {
                 nucleo1.push(p);
-                cout << "Proceso " << p.getId() << " ha sido añadido al nucleo 1" << endl;
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 1" << endl;
             }
-            else if (nucleo2.isEmpty() && p.getNucleo() == 2)
+            else if (nucleo2.isEmpty() && p.getCore() == 2)
             {
                 nucleo2.push(p);
-                cout << "Proceso " << p.getId() << " ha sido añadido al nucleo 2" << endl;
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 2" << endl;
             }
-            else if (nucleo3.isEmpty() && p.getNucleo() == 3)
+            else if (nucleo3.isEmpty() && p.getCore() == 3)
             {
                 nucleo3.push(p);
-                cout << "Proceso " << p.getId() << " ha sido añadido al nucleo 3" << endl;
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 3" << endl;
             }
         }
 
@@ -60,7 +72,7 @@ void Scheduler::simular(int minutos)
             p1.decrementLifeTime();  // Reduzco en 1 segundo el tiempo de vida del proceso
             if (p1.getLifeTime() == 0)
             {
-                cout << "Proceso " << p1.getId() << " ha sido eliminado del nucleo 1" << endl;
+                cout << "Proceso " << p1.getPID() << " ha sido eliminado del nucleo 1" << endl;
                 cout << "Su información es: " << p1.toString() << endl;
                 nucleo1.pop();
             }
@@ -73,7 +85,7 @@ void Scheduler::simular(int minutos)
             p2.decrementLifeTime();
             if (p2.getLifeTime() == 0)
             {
-                cout << "Proceso " << p2.getId() << " ha sido eliminado del nucleo 2" << endl;
+                cout << "Proceso " << p2.getPID() << " ha sido eliminado del nucleo 2" << endl;
                 cout << "Su información es: " << p2.toString() << endl;
                 nucleo2.pop();
             }
@@ -86,7 +98,7 @@ void Scheduler::simular(int minutos)
             p3.decrementLifeTime();
             if (p3.getLifeTime() == 0)
             {
-                cout << "Proceso " << p3.getId() << " ha sido eliminado del nucleo 3" << endl;
+                cout << "Proceso " << p3.getPID() << " ha sido eliminado del nucleo 3" << endl;
                 cout << "Su información es: " << p3.toString() << endl;
                 nucleo3.pop();
             }

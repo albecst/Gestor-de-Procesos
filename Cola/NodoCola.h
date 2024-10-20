@@ -1,15 +1,20 @@
 #ifndef NODOCOLA_H
 #define NODOCOLA_H
 #include <iostream>
+#include "Proceso/Proceso.h"
+
 class NodoCola
 {
-    friend class Cola;
 private:
     NodoCola *siguiente;
-    char elemento;
+    Proceso value;
+    friend class Cola;
+    friend class Proceso;
 public:
     NodoCola();
-    NodoCola(char e, NodoCola*sig = NULL);
+    NodoCola(Proceso p, NodoCola*sig = NULL);
     ~NodoCola();
+    Proceso proceso;
+    
 };
 #endif

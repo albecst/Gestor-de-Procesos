@@ -10,7 +10,7 @@ class Pila {
 		Pila();
 		~Pila();
 		void push(Proceso p);
-		void pop();
+		Proceso pop();
 		Proceso top();
 		int length();
 		bool isEmpty();
