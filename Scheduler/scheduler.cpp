@@ -106,6 +106,86 @@ void Scheduler::simulate(int minutos)
     }
 }
 
+void Scheduler::simulateComplete()
+{
+    Proceso p;
+    int tiempoTotal = 0;
+
+    // Muevo todos los procesos a la cola de espera
+    for (int i = 0; i < procesos.length(); i++)
+    {
+        colaEspera.push(procesos.pop());
+    }
+    // Ordeno los procesos por prioridad de mayor a menor
+    colaEspera.sortDesc(); //9, 3, 2, 1, 0 por ej
+
+    while (!colaEspera.isEmpty() || !nucleo1.isEmpty() || !nucleo2.isEmpty() || !nucleo3.isEmpty())
+    tiempoTotal += 1;
+    {
+        // Asigno los procesos a sus núcleos correspondientes si están vacíos
+        if (!colaEspera.isEmpty())
+        {
+            p = colaEspera.pop();
+            if (nucleo1.isEmpty() && p.getCore() == 1)
+            {
+                nucleo1.push(p);
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 1" << endl;
+            }
+            else if (nucleo2.isEmpty() && p.getCore() == 2)
+            {
+                nucleo2.push(p);
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 2" << endl;
+            }
+            else if (nucleo3.isEmpty() && p.getCore() == 3)
+            {
+                nucleo3.push(p);
+                cout << "Proceso " << p.getPID() << " ha sido añadido al nucleo 3" << endl;
+            }
+        }
+
+        // Verificar y actualizar el estado de cada núcleo
+        if (!nucleo1.isEmpty())
+        {
+            Proceso p1 = nucleo1.first();
+            p1.decrementLifeTime();  // Reduzco en 1 segundo el tiempo de vida del proceso
+            if (p1.getLifeTime() == 0)
+            {
+                cout << "Proceso " << p1.getPID() << " ha sido eliminado del nucleo 1" << endl;
+                p1.toString();
+                nucleo1.pop();
+            }
+        }
+
+        if (!nucleo2.isEmpty())
+        {
+            Proceso p2 = nucleo2.first();
+            p2.decrementLifeTime();
+            if (p2.getLifeTime() == 0)
+            {
+                cout << "Proceso " << p2.getPID() << " ha sido eliminado del nucleo 2" << endl;
+                p2.toString();
+                nucleo2.pop();
+            }
+        }
+
+        if (!nucleo3.isEmpty())
+        {
+            Proceso p3 = nucleo3.first();
+            p3.decrementLifeTime();
+            if (p3.getLifeTime() == 0)
+            {
+                cout << "Proceso " << p3.getPID() << " ha sido eliminado del nucleo 3" << endl;
+                p3.toString();
+                nucleo3.pop();
+            }
+        }
+    }
+    cout << "Tiempo total: " << tiempoTotal/60 << " minutos" << endl;
+}
+
+
+
+
 
 
 
