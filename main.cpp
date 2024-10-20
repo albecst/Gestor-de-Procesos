@@ -81,12 +81,14 @@ void opcion6()
 }
 
 // 7) Simular el funcionamiento (escribiendo en pantalla todos los datos de los procesos), supongo que hasta que todos los procesos terminen.
-void opcion7() {}
-	// scheduler.simulateComplete(); TODO
+void opcion7()
+{
+	scheduler.simulateComplete();
+}
 
 // Vamos a crear un menú para que el usuario pueda seleccionar alguna de las opciones anteriores.
 int main()
-{   
+{
 	do
 	{
 		cout << "Menu:\n";
