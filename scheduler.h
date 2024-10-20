@@ -17,7 +17,8 @@ class Scheduler{
     public:
         Scheduler();
         ~Scheduler();
-        void simular(int minutos);
+        void simulate(int minutos);
+        void simulateComplete();
 };
 
 #endif
