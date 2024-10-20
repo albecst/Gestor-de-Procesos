@@ -28,7 +28,7 @@ Scheduler::~Scheduler()
 // Cuando el tiempo de vida de un proceso llegue a 0, lo saco de la cola de nucleo
 // y meto otro proceso de la cola de espera
 
-void Scheduler::simular(int minutos)
+void Scheduler::simulate(int minutos)
 {
     Proceso p;
     int tiempo = minutos * 60;  // Convierto minutos a segundos (más cómodo)
