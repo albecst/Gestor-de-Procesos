@@ -1,7 +1,7 @@
 #ifndef NODOPILA_H
 #define NODOPILA_H
-#include <iostream>
 #include "Proceso/Proceso.h"
+#include <iostream>
 
 class NodoPila
 {
