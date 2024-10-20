@@ -73,7 +73,7 @@ void Scheduler::simular(int minutos)
             if (p1.getLifeTime() == 0)
             {
                 cout << "Proceso " << p1.getPID() << " ha sido eliminado del nucleo 1" << endl;
-                cout << "Su información es: " << p1.toString() << endl;
+                p1.toString();
                 nucleo1.pop();
             }
         }
@@ -86,7 +86,7 @@ void Scheduler::simular(int minutos)
             if (p2.getLifeTime() == 0)
             {
                 cout << "Proceso " << p2.getPID() << " ha sido eliminado del nucleo 2" << endl;
-                cout << "Su información es: " << p2.toString() << endl;
+                p2.toString();
                 nucleo2.pop();
             }
         }
@@ -99,7 +99,7 @@ void Scheduler::simular(int minutos)
             if (p3.getLifeTime() == 0)
             {
                 cout << "Proceso " << p3.getPID() << " ha sido eliminado del nucleo 3" << endl;
-                cout << "Su información es: " << p3.toString() << endl;
+                p3.toString();
                 nucleo3.pop();
             }
         }
