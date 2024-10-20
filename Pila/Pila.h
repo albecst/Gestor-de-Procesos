@@ -1,7 +1,7 @@
 #ifndef PILA_H
 #define PILA_H
 #include "NodoPila.h"
-#include "Proceso.h"
+#include "Proceso/Proceso.h"
 
 class Pila {
 	private:

@@ -1,5 +1,5 @@
 #include "NodoCola.h"
-#include "Proceso.h"
+#include "Proceso/Proceso.h"
 
 NodoCola::NodoCola()
 {

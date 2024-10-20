@@ -1,4 +1,4 @@
-#include "Proceso.h"
+#include "Proceso/Proceso.h"
 #include "NodoPila.h"
 #include "Pila.h"
 #include <iostream>
