@@ -11,7 +11,7 @@ class Proceso {
         int core;
 
     public:
-        Proceso(int pid, int ppid=1, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE);
+        Proceso(int pid, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE, int ppid=1); // El PPID tiene que ir al final porque lleva un param por defecto
         ~Proceso();
 
         void decrementLifeTime(int quantity);
