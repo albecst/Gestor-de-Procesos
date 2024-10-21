@@ -61,7 +61,7 @@ Proceso Pila::top() {
 	if(!isEmpty()) {
 		return cima->value;
 	} else {
-		return -0;
+		return Proceso();
 	}
 }
 
@@ -159,10 +159,4 @@ bool Pila::isOrder() {
 	}
 
 	return order;
-}
-
-void Pila::sort(){
-	if(isOrder()) { return; }
-	
-	// IMPLEMENTAR
 }

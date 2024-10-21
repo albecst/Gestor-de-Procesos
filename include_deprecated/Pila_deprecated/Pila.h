@@ -22,7 +22,6 @@ class Pila {
 		void popRange(int n);
 		void concat(Pila sec);
 		bool isOrder();
-		void sort();
 };
 
 #endif

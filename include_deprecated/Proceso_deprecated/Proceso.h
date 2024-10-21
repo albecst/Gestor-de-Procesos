@@ -16,7 +16,6 @@ private:
     friend class NodoCola;
 
 public:
-    Proceso();
     Proceso(int PID, int PPID, int startTime, int lifeTime, int priority, int core);
     ~Proceso();
 

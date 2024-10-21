@@ -1,5 +1,5 @@
-#include "NodoPila.h"
-#include "Proceso/Proceso.h"
+#include "../Pila/NodoPila.h"
+#include "../Proceso/Proceso.h"
 
 NodoPila::NodoPila() {
 	value = 0;
