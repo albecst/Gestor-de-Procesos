@@ -159,3 +159,9 @@ bool Pila::isOrder() {
 
 	return order;
 }
+
+void Pila::sort(){
+	if(isOrder()) { return; }
+	
+	// IMPLEMENTAR
+}

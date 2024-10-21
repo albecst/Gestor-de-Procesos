@@ -15,8 +15,7 @@ Cola::~Cola() {
 }
 
 void Cola::push(Proceso proceso) {
-    NodoCola *nuevo_nodo = new
-            NodoCola(proceso);
+    NodoCola *nuevo_nodo = new NodoCola(proceso);
     if (isEmpty()) {
         primero = nuevo_nodo;
         ultimo = nuevo_nodo;
@@ -29,7 +28,7 @@ void Cola::push(Proceso proceso) {
 
 Proceso Cola::pop() {
     if (!isEmpty()) {
-        Proceso proceso = primero->proceso;
+        Proceso proceso = primero->elemento.PID;
         NodoCola *aux = primero;
         if ((primero == ultimo) && (primero->siguiente == NULL)) {
             primero = NULL;
@@ -48,13 +47,13 @@ Proceso Cola::pop() {
 
 Proceso Cola::first() {
     if (!isEmpty()) {
-        return primero->proceso;
+        return primero->elemento.PID;
     }
 }
 
 Proceso Cola::last() {
     if (!isEmpty()) {
-        return ultimo->proceso;
+        return ultimo->elemento.PID;
     }
 }
 
@@ -63,8 +62,7 @@ int Cola::getLength() {
 }
 
 bool Cola::isEmpty() {
-    return ((primero == NULL) && (ultimo ==
-                                  NULL));
+    return ((primero == NULL) && (ultimo == NULL));
 }
 
 void Cola::showQueue() {
@@ -72,7 +70,7 @@ void Cola::showQueue() {
     if (isEmpty()) { cout << "Cola Vacía: " << endl; } else {
         cout << "Datos de la Cola: " << endl;
         while (aux) {
-            cout << aux->proceso << endl;
+            cout << aux->elemento.PID << endl;
             aux = aux->siguiente;
         }
     }
@@ -104,7 +102,7 @@ void Cola::same(Cola c) {
     Cola c3;
     bool iguales = true;
     while (!isEmpty() && !c.isEmpty()) {
-        if (first() == c.first()) {
+        if (first().PID == c.first().PID) {
             c2.push(pop());
             c3.push(c.pop());
         } else {
@@ -171,7 +169,7 @@ void Cola::isSorted() {
 
     while (!isEmpty()) {
         Proceso valorActual = pop();
-        if (valorActual < valorAnterior) {
+        if (valorActual.PID < valorAnterior.PID) {
             ordenada = false;
         }
         aux.push(valorActual);

@@ -3,13 +3,13 @@
 #include <iostream>
 class NodoCola
 {
-    friend class Cola;
 private:
     NodoCola *siguiente;
-    char elemento;
+    Proceso elemento;
+    friend class Cola;
 public:
     NodoCola();
-    NodoCola(char e, NodoCola*sig = NULL);
+    NodoCola(Proceso e, NodoCola*sig = NULL);
     ~NodoCola();
 };
 #endif
