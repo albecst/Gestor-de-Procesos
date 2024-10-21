@@ -17,7 +17,7 @@ Proceso::Proceso(int pid, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE,
     PID = pid;
     PPID = ppid;
     startTime = START_TIME;
-    tty = LIFE_TIME;
+    ttl = LIFE_TIME;
     priority = PRIORITY;
     core = CORE;
 }
@@ -27,8 +27,8 @@ Proceso::~Proceso()
 }
 
 void Proceso::decrementLifeTime(int quantity) {
-    if (tty > 0)
-        tty-=quantity;
+    if (ttl > 0)
+        ttl-=quantity;
 }
 
 void Proceso::toString()

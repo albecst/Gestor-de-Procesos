@@ -8,7 +8,7 @@ class Proceso {
         int PID;
         int PPID;
         int startTime;
-        int tty;
+        int ttl;
         int priority;
         int core;
 
