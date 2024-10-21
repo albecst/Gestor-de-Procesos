@@ -11,6 +11,7 @@ class Proceso {
         int core;
 
         friend class Pila;
+        friend class Cola;
 
     public:
         Proceso();

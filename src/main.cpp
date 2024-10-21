@@ -4,6 +4,10 @@
 #include "Pila/NodoPila.cpp"
 #include "Pila/Pila.h"
 #include "Pila/Pila.cpp"
+#include "Cola/NodoCola.h"
+#include "Cola/NodoCola.cpp"
+#include "Cola/Cola.h"
+#include "Cola/Cola.cpp"
 
 #include <iostream>
 
@@ -13,14 +17,15 @@ int main() {
 
     cout << "Proceso" << endl;
 
-    Proceso p1 (1, 1, 5, 10, 4, 3); 
-    Proceso p2 (2, 1, 5, 10, 3, 1);
+    Proceso p1 (1, 1, 5, 4, 4, 3); 
+    Proceso p2 (2, 1, 5, 7, 3, 1);
 
-    Pila p;
-    p.push(p1);
-    p.push(p2);
+    Cola c;
+    c.push(p1);
+    c.push(p2);
 
-    p.showAll();
+    c.sort();
+    c.showQueue();
 
     return 0;
 }

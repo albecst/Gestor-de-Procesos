@@ -3,7 +3,14 @@
 
 using namespace std;
 
-Proceso::Proceso() {}
+Proceso::Proceso() {
+    PID = -1;
+    PPID = -1;
+    startTime = -1;
+    tty = -1;
+    priority = -1;
+    core = -1;
+}
 
 Proceso::Proceso(int pid, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE, int ppid)
 {
@@ -32,4 +39,5 @@ void Proceso::toString()
     cout << "Lifetime: " << tty << endl;
     cout << "Priority: " << priority << endl;
     cout << "Core: " << core << endl;
+    cout << "\n\n";
 }
