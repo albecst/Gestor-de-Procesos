@@ -1,4 +1,4 @@
-#include "Proceso.h"
+#include "Proceso/Proceso.h"
 #include "NodoPila.h"
 #include "Pila.h"
 #include <iostream>
@@ -21,7 +21,7 @@ void Pila::push(Proceso p) {
 }
 
 // Pop the last item (LIFO)
-void Pila::pop() {
+Proceso Pila::pop() {
 	pnodo nodo;
 
 	if(cima) {
@@ -29,6 +29,7 @@ void Pila::pop() {
 		cima = nodo->next;
 		delete nodo;
 	}
+	return nodo->value;
 }
 
 // Check if stack is empty

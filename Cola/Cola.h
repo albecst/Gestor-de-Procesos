@@ -26,5 +26,6 @@ public:
     void mixAlternately(Cola c, Cola resultado);
     void quitFirstHalf();
     void isSorted();
+    void sortDesc();
 };
 #endif // COLA_H

@@ -12,6 +12,9 @@ Cola::Cola() {
 }
 
 Cola::~Cola() {
+    while (!isEmpty()) {
+        pop();
+    }
 }
 
 void Cola::push(Proceso proceso) {
@@ -30,31 +33,29 @@ Proceso Cola::pop() {
     if (!isEmpty()) {
         Proceso proceso = primero->elemento.PID;
         NodoCola *aux = primero;
-        if ((primero == ultimo) && (primero->siguiente == NULL)) {
-            primero = NULL;
+        primero = primero->siguiente;
+        if (primero == NULL) {
             ultimo = NULL;
-            aux->siguiente = NULL;
-            delete(aux);
-        } else {
-            primero = primero->siguiente;
-            aux->siguiente = NULL;
-            delete(aux);
         }
+        delete aux;
         longitud--;
         return proceso;
     }
+    throw runtime_error("La cola está vacía");
 }
 
 Proceso Cola::first() {
     if (!isEmpty()) {
         return primero->elemento.PID;
     }
+    throw runtime_error("La cola está vacía");
 }
 
 Proceso Cola::last() {
     if (!isEmpty()) {
         return ultimo->elemento.PID;
     }
+    throw runtime_error("La cola está vacía");
 }
 
 int Cola::getLength() {
@@ -70,7 +71,11 @@ void Cola::showQueue() {
     if (isEmpty()) { cout << "Cola Vacía: " << endl; } else {
         cout << "Datos de la Cola: " << endl;
         while (aux) {
+<<<<<<< HEAD
             cout << aux->elemento.PID << endl;
+=======
+            aux->proceso.toString();
+>>>>>>> 7b7d67c5198affacb09623714bf05aca6b2bdddd
             aux = aux->siguiente;
         }
     }
@@ -102,7 +107,11 @@ void Cola::same(Cola c) {
     Cola c3;
     bool iguales = true;
     while (!isEmpty() && !c.isEmpty()) {
+<<<<<<< HEAD
         if (first().PID == c.first().PID) {
+=======
+        if (first().PPID == c.first().PPID) {
+>>>>>>> 7b7d67c5198affacb09623714bf05aca6b2bdddd
             c2.push(pop());
             c3.push(c.pop());
         } else {
@@ -169,7 +178,11 @@ void Cola::isSorted() {
 
     while (!isEmpty()) {
         Proceso valorActual = pop();
+<<<<<<< HEAD
         if (valorActual.PID < valorAnterior.PID) {
+=======
+        if (valorActual.getPriority() < valorAnterior.getPriority()) {
+>>>>>>> 7b7d67c5198affacb09623714bf05aca6b2bdddd
             ordenada = false;
         }
         aux.push(valorActual);
@@ -187,7 +200,26 @@ void Cola::isSorted() {
     }
 }
 
+//Para el scheduler
+void Cola::sortDesc() {
+    Pila pilaAux;  // Usaremos una pila auxiliar
+    while (!isEmpty()) {
+        Proceso procesoActual = pop();
 
+        while (!pilaAux.isEmpty() && pilaAux.top().getPriority() > procesoActual.getPriority()) {
+            push(pilaAux.top());
+            pilaAux.pop();
+        }
+
+        pilaAux.push(procesoActual);
+        }
+
+    // Volvemos a insertar los procesos desde la pila auxiliar a la cola
+    while (!pilaAux.isEmpty()) {
+        push(pilaAux.top());
+        pilaAux.pop();
+    }
+}
 
 
 
