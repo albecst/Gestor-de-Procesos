@@ -1,14 +1,14 @@
-#include "Pila/NodoPila.h"
-#include "Pila/NodoPila.cpp"
-#include "Pila/Pila.h"
-#include "Pila/Pila.cpp"
+#include "../include/Proceso/Proceso.h"
+#include "../include/Proceso/Proceso.cpp"
+#include "../include/Pila/NodoPila.h"
+#include "../include/Pila/NodoPila.cpp"
+#include "../include/Pila/Pila.h"
+#include "../include/Pila/Pila.cpp"
+#include "../include/Cola/Cola.cpp"
+#include "../include/Cola/Cola.h"
+#include "../include/Scheduler/scheduler.h"
+#include "../include/Scheduler/scheduler.cpp"
 #include <iostream>
-#include "Cola.cpp"
-#include "Cola.h"
-#include "Proceso.h"
-#include "Proceso.cpp"
-#include "Scheduler.h"
-#include "Scheduler.cpp"
 using namespace std;
 
 // Necesitamos un mínimo de 10 procesos (p1...p10) que pertenecerán a una pila.
