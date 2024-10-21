@@ -16,11 +16,9 @@ class Cola {
         Proceso last();
         Proceso pop();
         bool isEmpty();
-        void showQueue();
         int getLength();
         void reverse();
-        void same(Cola c);
-        void concat(Cola c);
+        void showQueue();
         void isSorted();
         void sort();
 };

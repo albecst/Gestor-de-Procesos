@@ -98,44 +98,6 @@ void Cola::reverse() {
     }
 }
 
-//2)
-void Cola::same(Cola c) {
-    Cola c2;
-    Cola c3;
-    bool iguales = true;
-    while (!isEmpty() && !c.isEmpty()) {
-        if (first().PPID == c.first().PPID) {
-            c2.push(pop());
-            c3.push(c.pop());
-        } else {
-            iguales = false;
-            break;
-        }
-    }
-    if (iguales) {
-        cout << "Las colas son iguales" << endl;
-    } else {
-        cout << "Las colas no son iguales" << endl;
-    }
-    while (!c2.isEmpty()) {
-        push(c2.pop());
-    }
-    while (!c3.isEmpty()) {
-        c.push(c3.pop());
-    }
-}
-
-//3) TODO
-//void Cola::simetrica() {
-
-//4)
-void Cola::concat(Cola c2) {
-    while (!c2.isEmpty()) {
-        push(c2.pop());
-    }
-}
-
-
 void Cola::isSorted() {
     if (isEmpty()) {
         cout << "La cola está vacía" << endl;
