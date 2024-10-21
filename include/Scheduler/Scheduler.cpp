@@ -18,15 +18,15 @@ void Scheduler::addProcessToQueue() {
 
 void Scheduler::addProcessToCore() {
     if(!colaEspera.isEmpty()) {
-        if(core_1.PID == NULL) {
+        if(core_1.PID == -1) {
             core_1 = colaEspera.first();
             core_1.core = 1;
             colaEspera.pop();
-        } else if(core_2.PID == NULL) {
+        } else if(core_2.PID == -1) {
             core_2 = colaEspera.first();
             core_2.core = 2;
             colaEspera.pop();
-        } else if(core_3.PID == NULL) {
+        } else if(core_3.PID == -1) {
             core_3 = colaEspera.first();
             core_3.core = 3;
             colaEspera.pop();
@@ -39,15 +39,15 @@ void Scheduler::addProcessToCore() {
 void Scheduler::freeCore(int core) {
     switch (core) {
         case 1:
-            core_1.PID == NULL;
+            core_1.PID = -1;
             break;
         
         case 2:
-            core_2.PID == NULL;
+            core_2.PID = -1;
             break;
 
         case 3:
-            core_3.PID == NULL;
+            core_3.PID = -1;
             break;
 
         default:
@@ -56,4 +56,17 @@ void Scheduler::freeCore(int core) {
 
     addProcessToQueue();
     addProcessToCore();
+}
+
+void Scheduler::showProcesos() {
+    procesos.showAll();
+}
+
+void Scheduler::showQueue() {
+    colaEspera.showQueue();
+}
+
+void Scheduler::addProcess(Proceso p) { procesos.push(p); }
+
+void Scheduler::check(int time) {
 }

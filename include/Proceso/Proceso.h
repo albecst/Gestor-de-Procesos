@@ -1,6 +1,8 @@
 #ifndef PROCESO_H
 #define PROCESO_H
 
+#include <iostream>
+
 class Proceso {
     private:
         int PID;

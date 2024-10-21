@@ -23,6 +23,10 @@ class Scheduler{
         void addProcessToQueue();
         void addProcessToCore();
         void freeCore(int core);
+        void addProcess(Proceso p);
+        void showProcesos();
+        void showQueue();
+        void check(int time);
 };
 
 #endif
