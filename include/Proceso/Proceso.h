@@ -10,7 +10,10 @@ class Proceso {
         int priority;
         int core;
 
+        friend class Pila;
+
     public:
+        Proceso();
         Proceso(int pid, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE, int ppid=1); // El PPID tiene que ir al final porque lleva un param por defecto
         ~Proceso();
 

@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Proceso::Proceso() {}
+
 Proceso::Proceso(int pid, int START_TIME, int LIFE_TIME, int PRIORITY, int CORE, int ppid)
 {
     PID = pid;
