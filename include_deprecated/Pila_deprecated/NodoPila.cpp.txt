@@ -1,6 +1,3 @@
-#include "../Pila/NodoPila.h"
-#include "../Proceso/Proceso.h"
-
 NodoPila::NodoPila() {
 	value = 0;
 	next = NULL;
