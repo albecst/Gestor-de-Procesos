@@ -7,7 +7,7 @@ Proceso::Proceso() {
     PID = -1;
     PPID = -1;
     startTime = -1;
-    tty = -1;
+    ttl = -1;
     priority = -1;
     core = -1;
 }
