@@ -12,6 +12,7 @@ class Proceso {
 
         friend class Pila;
         friend class Cola;
+        friend class Scheduler;
 
     public:
         Proceso();
