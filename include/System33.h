@@ -1,5 +1,5 @@
-#ifndef SYSWOW33_H
-#define SYSWOW33_H
+#ifndef SYSTEM33_H
+#define SYSTEM33_H
 
 #include "Proceso/Proceso.h"
 #include "Proceso/Proceso.cpp"
