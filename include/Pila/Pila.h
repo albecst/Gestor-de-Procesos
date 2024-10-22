@@ -21,6 +21,7 @@ class Pila {
 		void popLast(); // Quitar el último proceso de la pila
 		void concat(Pila sec); // Unir dos pilas
 		bool isOrder(); // Mirar si la pila está ordenada
+		void sortTTL(); // Ordenar la pila por ttl
 };
 
 #endif
