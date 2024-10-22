@@ -21,11 +21,11 @@ int main() {
     Scheduler scheduler; // Iniciar el Scheduler
 
     // Inicio carga procesos
-    Proceso p1 (1, 1, 6, 4, -1, 3); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
-    Proceso p2 (2, 5, 5, 7, -1, 1);
-    Proceso p3 (3, 6, 2, 2, -1, 1);
-    Proceso p4 (4, 8, 6, 8, -1, 1);
-    Proceso p5 (5, 10, 2, 1, -1, 1);
+    Proceso p1 (1, 5, 6, 4, 5, 3); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p2 (2, 4, 5, 7, 4, 1);
+    Proceso p3 (3, 7, 2, 2, 9, 1);
+    Proceso p4 (4, 2, 6, 8, 2, 1);
+    Proceso p5 (5, 1, 2, 1, 3, 1);
 
     scheduler.addProcess(p1);
     scheduler.addProcess(p2);
@@ -43,6 +43,11 @@ int main() {
             incrementTime(c);
             scheduler.check(SYS_CLK);
             scheduler.printCores();
+            cout << "STACK: " << endl;
+            scheduler.showProcesos();
+            cout << "QUEUE: " << endl;
+            scheduler.showQueue();
+            cout << "\n\n\n";
         } catch (const exception e){
             return 0;
         }

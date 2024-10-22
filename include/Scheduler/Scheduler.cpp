@@ -10,7 +10,7 @@ Scheduler::~Scheduler() {}
 
 void Scheduler::addProcessToQueue() {
     if(!procesos.isEmpty()) {
-        // procesos.sort(); // Ordenar la pila de procesos
+        procesos.sortTTL(); // Ordenar la pila de procesos
         colaEspera.push(procesos.top());
         colaEspera.sort(); // Ordenar la cola
         procesos.pop();
