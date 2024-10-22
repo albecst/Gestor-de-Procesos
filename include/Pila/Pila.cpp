@@ -146,3 +146,27 @@ bool Pila::isOrder() {
 
 	return order;
 }
+
+
+// Sort the stack por (Por orden de tiempo de salida) Ej (tiempo de vida): [1.2, 1.3, 1.1] -> [1.1, 1.2, 1.3]
+void Pila::sortTTL() {
+    Pila aux;
+    Proceso tmp;
+
+    while(!isEmpty()) {
+        tmp = top();
+        pop();
+
+        while(!aux.isEmpty() && aux.top().startTime > tmp.startTime) { 
+            push(aux.top());
+            aux.pop();
+        }
+
+        aux.push(tmp);
+    }
+
+    while(!aux.isEmpty()) {
+        push(aux.top());
+        aux.pop();
+    }
+}
