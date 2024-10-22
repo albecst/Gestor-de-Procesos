@@ -36,7 +36,7 @@ void Proceso::toString()
     cout << "PID: " << PID << endl;
     cout << "PPID: " << PPID << endl;
     cout << "Start Time: " << startTime << endl;
-    cout << "Lifetime: " << tty << endl;
+    cout << "Lifetime: " << ttl << endl;
     cout << "Priority: " << priority << endl;
     cout << "Core: " << core << endl;
     cout << "\n\n";
