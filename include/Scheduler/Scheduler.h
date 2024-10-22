@@ -21,11 +21,12 @@ class Scheduler{
         ~Scheduler();
         
         void addProcessToQueue();
-        void addProcessToCore();
-        void freeCore(int core);
+        void addProcessToCore(int time);
+        void freeCore(int core, int time);
         void addProcess(Proceso p);
         void showProcesos();
         void showQueue();
+        void printCores();
         void check(int time);
 };
 

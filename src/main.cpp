@@ -39,9 +39,10 @@ int main() {
     while(1) {
         try{
             int c;
-            scanf("%d", c);
+            scanf("%d", &c);
             incrementTime(c);
             scheduler.check(SYS_CLK);
+            scheduler.printCores();
         } catch (const exception e){
             return 0;
         }
