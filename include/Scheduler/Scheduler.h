@@ -28,6 +28,9 @@ class Scheduler{
         void showQueue();
         void printCores();
         void check(int time);
+
+        void sortP();
+        void init(int clk);
 };
 
 #endif

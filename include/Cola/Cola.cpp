@@ -69,10 +69,12 @@ bool Cola::isEmpty() {
 
 void Cola::showQueue() {
     NodoCola *aux = primero;
-    if (isEmpty()) { cout << "Cola Vacía: " << endl; } else {
+    if (isEmpty()) {
+        cout << "Cola Vacía: " << endl;
+    } else {
         cout << "Datos de la Cola: " << endl;
         while (aux) {
-            aux->proceso.toString();
+            cout << "PID: " << aux->proceso.PID << endl;
             aux = aux->siguiente;
         }
     }
