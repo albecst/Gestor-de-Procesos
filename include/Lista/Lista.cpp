@@ -5,35 +5,48 @@
 
 using namespace std;
 
-Lista::Lista() {
+Lista::Lista()
+{
     nodo = new NodoLista(Proceso(), NULL);
     length = 0;
 }
 
-Lista::Lista(Proceso p) {
+Lista::Lista(Proceso p)
+{
     nodo = new NodoLista(p, NULL);
     length = 1;
 }
 
-Lista::~Lista() {
-    
+Lista::~Lista()
+{
 }
 
-bool Lista::isEmpty() {
+bool Lista::isEmpty()
+{
     return length == 0;
 }
 
 // Funciones de adición
-void Lista::append(Proceso p) {
-    plista current = nodo;
+void Lista::append(Proceso p)
+{
+    if (length != 0)
+    {
+        plista current = nodo;
 
-    while(current->next != NULL) {
-        current = current->next;
+        while (current->next != NULL)
+        {
+            current = current->next;
+        }
+
+        current->next = new NodoLista(p);
+    } else {
+        nodo = new NodoLista(p);
+        length = 1;
     }
-
-    current->next = new NodoLista(p);
 }
-void Lista::appendFront(Proceso p) {
+
+void Lista::appendFront(Proceso p)
+{
     plista current = nodo;
     plista nuevo = new NodoLista(p);
     nuevo->next = current;
@@ -41,29 +54,35 @@ void Lista::appendFront(Proceso p) {
 }
 
 // Funciones de borrado
-void Lista::popLast() {
+void Lista::popLast()
+{
     plista current = nodo;
 
-    while(current->next->next != NULL) {
+    while (current->next->next != NULL)
+    {
         current = current->next;
     }
 
     current->next = NULL;
 }
-void Lista::popFront() {
+void Lista::popFront()
+{
     nodo = nodo->next;
 }
 
 // Getters
 
-Proceso Lista::getFirst() {
+Proceso Lista::getFirst()
+{
     return nodo->proceso;
 }
 
-Proceso Lista::getLast() {
+Proceso Lista::getLast()
+{
     plista current = nodo;
 
-    while(current->next != NULL) {
+    while (current->next != NULL)
+    {
         current = current->next;
     }
 
@@ -71,24 +90,29 @@ Proceso Lista::getLast() {
 }
 
 // Funciones para usar en debug
-void Lista::printFirst() {
+void Lista::printFirst()
+{
     cout << nodo->proceso.PID << endl;
 }
 
-void Lista::printLast() {
+void Lista::printLast()
+{
     plista current = nodo;
 
-    while(current->next != NULL) {
+    while (current->next != NULL)
+    {
         current = current->next;
     }
 
     cout << current->proceso.PID << endl;
 }
 
-void Lista::toString() {
+void Lista::toString()
+{
     plista current = nodo;
 
-    while(current != NULL) {
+    while (current != NULL)
+    {
         cout << current->proceso.PID << ", ";
         current = current->next;
     }
