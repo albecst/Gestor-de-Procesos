@@ -79,9 +79,9 @@ void simulateTime()
 // 7: Simular el funcionamiento de todos los procesos, devuelve el tiempo medio de estancia en el SO de los procesos
 void simulateAllProcesses()
 {
-    Pila procesos = scheduler.getProcesos();
-    int totalTTL = procesos.getAllTTL();
-    int numeroProcesos = scheduler.getProcesos().length();
+    // Pila procesos = scheduler.getProcesos();
+    // int totalTTL = procesos.getAllTTL();
+    // int numeroProcesos = scheduler.getProcesos().length();
 
     while (!scheduler.allProcessesCompleted())
     {
@@ -99,7 +99,7 @@ void simulateAllProcesses()
     }
 
     cout << "Todos los procesos han sido ejecutados." << endl;
-    cout << "El tiempo medio de estancia en el SO de los procesos es de: " << totalTTL / numeroProcesos << " minutos." << endl;
+    // cout << "El tiempo medio de estancia en el SO de los procesos es de: " << totalTTL / numeroProcesos << " minutos." << endl;
 }
 
 int main()
