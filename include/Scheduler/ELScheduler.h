@@ -42,6 +42,7 @@ class Scheduler{
         bool isQueueSaturated();
         void addAuxCore();
         void disableAuxCore();
+        void addProcessToAUXCore(int time);
 };
 
 #endif

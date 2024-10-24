@@ -137,6 +137,17 @@ void Scheduler::check(int time)
     {
         freeCore(3, time);
     }
+
+    while(isQueueSaturated()) {
+        addAuxCore();
+        addProcessToAUXCore(time);
+    }
+}
+
+void Scheduler::addProcessToAUXCore(int time) {
+    Proceso c = aux_cores.getLast();
+    c.PID = colaEspera.last().PID;
+    colaEspera.pop();
 }
 
 void Scheduler::init(int clk)
