@@ -13,7 +13,7 @@ Scheduler::~Scheduler() {}
 
 void Scheduler::addProcessToQueue()
 {
-    if (!procesos.isEmpty())
+    if (!procesos.isEmpty()) //TODO: Habría que añadir si (!procesos.isEmpty() && procesos.top().startTime <= SYS_CLK) 
     {
         procesos.sortTTL(); // Ordenar la pila de procesos
         colaEspera.push(procesos.top());
