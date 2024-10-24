@@ -28,6 +28,7 @@ int main()
     cout << "PIDs a cargar: ";
     scheduler.showProcesos();
 
+    cout << "PROCESOS CARGADOS: " << endl;
     scheduler.init(SYS_CLK);
     // Fin carga de procesos
     while (1)
