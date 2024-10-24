@@ -43,6 +43,7 @@ class Scheduler{
         void addAuxCore();
         void disableAuxCore();
         void addProcessToAUXCore(int time);
+        void popAUXCore();
 };
 
 #endif
