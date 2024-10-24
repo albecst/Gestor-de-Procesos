@@ -1,4 +1,5 @@
 #include "Scheduler.h"
+#include "Pila/Pila.h"
 #include <iostream>
 using namespace std;
 
@@ -57,18 +58,24 @@ void Scheduler::freeCore(int core, int time)
     switch (core)
     {
     case 1:
-        cout << "El proceso con PID: " << core_1.PID << " ha acabado, se ha sacado del core 1" << endl;
-        core_1.PID = -1;
+        if (core_1.PID != -1) {
+            cout << "El proceso con PID: " << core_1.PID << " ha acabado, se ha sacado del core 1" << endl;
+            core_1.PID = -1;
+        }
         break;
 
     case 2:
-        cout << "El proceso con PID: " << core_2.PID << " ha acabado, se ha sacado del core 2" << endl;
-        core_2.PID = -1;
+        if (core_2.PID != -1) {
+            cout << "El proceso con PID: " << core_2.PID << " ha acabado, se ha sacado del core 2" << endl;
+            core_2.PID = -1;
+        }
         break;
 
     case 3:
-    cout << "El proceso con PID: " << core_3.PID << " ha acabado, se ha sacado de la core 3" << endl;
-        core_3.PID = -1;
+        if (core_3.PID != -1) {
+            cout << "El proceso con PID: " << core_3.PID << " ha acabado, se ha sacado del core 3" << endl;
+            core_3.PID = -1;
+        }
         break;
 
     default:
@@ -156,4 +163,16 @@ bool Scheduler::allProcessesCompleted(){
         return true;
     }
     return false;
+}
+
+void Scheduler::clearProcesses(){
+    procesos.clear();
+    colaEspera.clear();
+    core_1.PID = -1;
+    core_2.PID = -1;
+    core_3.PID = -1;
+}
+
+Pila Scheduler::getProcesos(){
+    return procesos;
 }

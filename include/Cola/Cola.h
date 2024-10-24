@@ -21,5 +21,6 @@ class Cola {
         void showQueue();
         void isSorted();
         void sort();
+        void clear();
 };
 #endif // COLA_H

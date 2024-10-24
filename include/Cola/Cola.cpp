@@ -153,6 +153,11 @@ void Cola::sort() {
     }
 }
 
-
+// Para el scheduler
+void Cola::clear() {
+    while (!isEmpty()) {
+        pop();
+    }
+}
 
 

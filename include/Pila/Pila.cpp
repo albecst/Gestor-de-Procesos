@@ -170,3 +170,29 @@ void Pila::sortTTL() {
         aux.pop();
     }
 }
+
+// Clear the stack
+void Pila::clear() {
+	while(!isEmpty()) {
+		pop();
+	}
+}
+
+// Get the sum of all TTL
+int Pila::getAllTTL() {
+	Pila aux;
+	int ttl = 0;
+
+	while(!isEmpty()) {
+		ttl += top().ttl;
+		aux.push(top());
+		pop();
+	}
+
+	while(!aux.isEmpty()) {
+		push(aux.top());
+		aux.pop();
+	}
+
+	return ttl;
+}

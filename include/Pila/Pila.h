@@ -22,6 +22,8 @@ class Pila {
 		void concat(Pila sec); // Unir dos pilas
 		bool isOrder(); // Mirar si la pila está ordenada
 		void sortTTL(); // Ordenar la pila por ttl
+		void clear(); // Vaciar la pila
+		int getAllTTL(); // Sumar todos los TTL de los procesos
 };
 
 #endif
