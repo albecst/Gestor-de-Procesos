@@ -1,6 +1,7 @@
 #include "Scheduler.h"
 #include "Pila/Pila.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 Scheduler::Scheduler()
@@ -48,7 +49,7 @@ void Scheduler::addProcessToCore(int time)
         }
         else
         {
-            std::cout << "Todos los núcleos están ocupados, espera\n";
+            cout << "Todos los núcleos están ocupados, espera" << endl;
         }
     }
 }
@@ -58,21 +59,30 @@ void Scheduler::freeCore(int core, int time)
     switch (core)
     {
     case 1:
-        if (core_1.PID != -1) {
+        if (core_1.PID != -1)
+        {
+            tiempos.push_back(time - core_1.startTime);
+
             cout << "El proceso con PID: " << core_1.PID << " ha acabado, se ha sacado del core 1" << endl;
             core_1.PID = -1;
         }
         break;
 
     case 2:
-        if (core_2.PID != -1) {
+        if (core_2.PID != -1)
+        {
+            tiempos.push_back(time - core_2.startTime);
+
             cout << "El proceso con PID: " << core_2.PID << " ha acabado, se ha sacado del core 2" << endl;
             core_2.PID = -1;
         }
         break;
 
     case 3:
-        if (core_3.PID != -1) {
+        if (core_3.PID != -1)
+        {
+            tiempos.push_back(time - core_3.ttl);
+
             cout << "El proceso con PID: " << core_3.PID << " ha acabado, se ha sacado del core 3" << endl;
             core_3.PID = -1;
         }
@@ -109,7 +119,6 @@ void Scheduler::addProcess(Proceso p)
 
 void Scheduler::check(int time)
 {
-
     bool pilaOK = false;
 
     // MIRAR SI HAY ALGO QUE SE PUEDA METER EN LA COLA DE ESPERA
@@ -158,14 +167,17 @@ void Scheduler::init(int clk)
 }
 
 // Función que indica si todos los procesos han sido completados
-bool Scheduler::allProcessesCompleted(){
-    if(procesos.isEmpty() && colaEspera.isEmpty() && core_1.PID == -1 && core_2.PID == -1 && core_3.PID == -1){
+bool Scheduler::allProcessesCompleted()
+{
+    if (procesos.isEmpty() && colaEspera.isEmpty() && core_1.PID == -1 && core_2.PID == -1 && core_3.PID == -1)
+    {
         return true;
     }
     return false;
 }
 
-void Scheduler::clearProcesses(){
+void Scheduler::clearProcesses()
+{
     procesos.clear();
     colaEspera.clear();
     core_1.PID = -1;
@@ -173,6 +185,12 @@ void Scheduler::clearProcesses(){
     core_3.PID = -1;
 }
 
-Pila Scheduler::getProcesos(){
+Pila Scheduler::getProcesos()
+{
     return procesos;
+}
+
+vector<int> Scheduler::getTiempos()
+{
+    return tiempos;
 }

@@ -6,11 +6,15 @@
 #include "Pila/Pila.h"
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
+#include <vector>
+using namespace std;
+
 
 class Scheduler{
     private:
         Pila procesos;
         Cola colaEspera;
+        vector<int> tiempos;
 
         Proceso core_1;
         Proceso core_2;
@@ -34,6 +38,7 @@ class Scheduler{
         bool allProcessesCompleted();
         void clearProcesses();
         Pila getProcesos();
+        vector<int> getTiempos();
 };
 
 #endif
