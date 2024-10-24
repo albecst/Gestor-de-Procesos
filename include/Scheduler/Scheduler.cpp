@@ -81,7 +81,7 @@ void Scheduler::freeCore(int core, int time)
     case 3:
         if (core_3.PID != -1)
         {
-            tiempos.push_back(time - core_3.ttl);
+            tiempos.push_back(time - core_3.startTime);
 
             cout << "El proceso con PID: " << core_3.PID << " ha acabado, se ha sacado del core 3" << endl;
             core_3.PID = -1;
