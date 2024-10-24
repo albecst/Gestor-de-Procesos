@@ -4,6 +4,6 @@
 test_compile.sh
 
 mi_programa
-main2.cpp
+
 src/pruebaManúMain.cpp
 src/test_lista.cpp

@@ -5,6 +5,11 @@
 
 using namespace std;
 
+Lista::Lista() {
+    nodo = new NodoLista(Proceso(), NULL);
+    length = 0;
+}
+
 Lista::Lista(Proceso p) {
     nodo = new NodoLista(p, NULL);
     length = 1;

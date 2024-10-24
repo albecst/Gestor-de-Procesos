@@ -9,7 +9,7 @@ class Lista {
         friend class Proceso;
 
     public:
-        //Lista();
+        Lista();
         Lista(Proceso p);
         ~Lista();
 
