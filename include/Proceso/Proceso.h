@@ -14,6 +14,7 @@ class Proceso {
 
         friend class Pila;
         friend class Cola;
+        friend class Lista;
         friend class Scheduler;
 
     public:

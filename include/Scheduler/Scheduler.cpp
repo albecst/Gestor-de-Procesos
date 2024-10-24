@@ -149,3 +149,11 @@ void Scheduler::init(int clk)
     addProcessToCore(clk);
     addProcessToCore(clk);
 }
+
+// Función que indica si todos los procesos han sido completados
+bool Scheduler::allProcessesCompleted(){
+    if(procesos.isEmpty() && colaEspera.isEmpty() && core_1.PID == -1 && core_2.PID == -1 && core_3.PID == -1){
+        return true;
+    }
+    return false;
+}

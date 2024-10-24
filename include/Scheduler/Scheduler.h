@@ -31,6 +31,7 @@ class Scheduler{
 
         void sortP();
         void init(int clk);
+        bool allProcessesCompleted();
 };
 
 #endif

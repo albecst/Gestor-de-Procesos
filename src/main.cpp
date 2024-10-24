@@ -58,13 +58,3 @@ int main()
 
     return 0;
 }
-
-/*
-cout << endl;
-    cout << endl;
-    scheduler.addProcessToQueue();
-    scheduler.addProcessToQueue();
-    scheduler.showQueue();
-
-    cout << "En PILA: ";
-    scheduler.showProcesos();*/
