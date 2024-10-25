@@ -138,7 +138,7 @@ void Cola::sort() {
     while (!isEmpty()) {
         Proceso procesoActual = pop();
 
-        while (!pilaAux.isEmpty() && pilaAux.top().priority > procesoActual.priority) {
+        while (!pilaAux.isEmpty() && pilaAux.top().priority < procesoActual.priority) {
             push(pilaAux.top());
             pilaAux.pop();
         }
