@@ -24,7 +24,7 @@ class Scheduler{
         Scheduler();
         ~Scheduler();
         
-        void addProcessToQueue();
+        void addProcessToQueue(int sys_clk);
         void addProcessToCore(int time);
         void freeCore(int core, int time);
         void addProcess(Proceso p);
