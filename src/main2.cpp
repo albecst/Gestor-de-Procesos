@@ -49,10 +49,13 @@ int main()
     // s.check(SYS_CLK);
     // s.toString();
 
-    while (int opcion = -1)
+    int opcion = 0;
+    while (opcion >= 0)
     {
-        cout << "Introduce los minutos que quieres simular: ";
+        cout << "Introduce los minutos que quieres simular (número negativo para salir): ";
         cin >> opcion;
+        if (opcion < 0)
+            break;
         SYS_CLK += opcion;
         cout << "De momento han pasado " << SYS_CLK << " minutos." << endl;
         s.check(SYS_CLK);
