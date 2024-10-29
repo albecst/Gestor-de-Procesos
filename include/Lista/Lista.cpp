@@ -21,6 +21,8 @@ Lista::~Lista()
 {
 }
 
+int Lista::getLength() { return length; }
+
 bool Lista::isEmpty()
 {
     return length == 0;
@@ -39,7 +41,10 @@ void Lista::append(Proceso p)
         }
 
         current->next = new NodoLista(p);
-    } else {
+        length++;
+    }
+    else
+    {
         nodo = new NodoLista(p);
         length = 1;
     }
@@ -51,6 +56,32 @@ void Lista::appendFront(Proceso p)
     plista nuevo = new NodoLista(p);
     nuevo->next = current;
     nodo = nuevo;
+    length++;
+}
+
+void Lista::appendIndex(Proceso p, int idx) {
+    cout << "YESS" << endl;
+
+    if (idx <= 0) {  // Añadir al inicio si idx es 0 o negativo
+        appendFront(p);
+        return;
+    }
+
+    if (idx >= length) {  // Añadir al final si idx es mayor o igual a la longitud actual
+        append(p);
+        return;
+    }
+
+    plista current = nodo;
+
+    for (int count = 0; count < idx - 1; count++) {  // Avanza hasta el nodo anterior a idx
+        current = current->next;
+    }
+
+    // Inserta el nuevo nodo en la posición deseada
+    plista insert = new NodoLista(p);
+    insert->next = current->next;
+    current->next = insert;  
 }
 
 // Funciones de borrado
@@ -64,10 +95,43 @@ void Lista::popLast()
     }
 
     current->next = NULL;
+    length--;
 }
 void Lista::popFront()
 {
     nodo = nodo->next;
+    length--;
+}
+
+void Lista::popIndex(int idx)
+{
+    plista current = nodo;
+    plista sig = nodo;
+    int count = 0;
+
+    if(idx == 0) { popFront(); return;}
+
+    if(idx == 1) {
+        sig = sig->next->next;
+        current->next = sig;
+        length--;
+        return;
+    }
+
+    while (count != idx - 1)
+    {
+        current = current->next;
+        sig = current->next->next;
+        count++;
+    }
+
+    if (sig)
+    {
+        current->next = sig;
+        length--;        
+    } else {
+        popLast();
+    }
 }
 
 // Getters
@@ -85,6 +149,14 @@ Proceso Lista::getLast()
     {
         current = current->next;
     }
+
+    return current->proceso;
+}
+
+Proceso Lista::getIndex(int idx) {
+    plista current = nodo;
+    
+    for(int i = 0; i<idx; i++) current = current->next;
 
     return current->proceso;
 }

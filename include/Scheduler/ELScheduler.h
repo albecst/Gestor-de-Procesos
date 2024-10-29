@@ -7,43 +7,35 @@
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
 #include "Lista/NodoLista.h"
-#include "Lista/NodoLista.cpp"
 #include "Lista/Lista.h"
-#include "Lista/Lista.cpp"
 
-class Scheduler{
+class Scheduler {
     private:
         Pila procesos;
-        Cola colaEspera;
+        Cola colaEspera; // Máximo 2 en espera, si no, crear otro core
+        Lista cores;
 
-        Proceso core_1;
-        Proceso core_2;
-        Proceso core_3;
-
-        Lista aux_cores;
+        int MIN_CORES;
 
     public:
-        Scheduler();
+        Scheduler(int min);
         ~Scheduler();
-        
-        void addProcessToQueue();
+
+        void init(int clk);
+
+        void addProcessToStack(Proceso p);
+        void addProcessToQueue(int time);
         void addProcessToCore(int time);
+        void addCore(int time);
+        void popCore(int idx);
         void freeCore(int core, int time);
-        void addProcess(Proceso p);
-        void showProcesos();
-        void showQueue();
-        void printCores();
         void check(int time);
 
-        void sortP();
-        void init(int clk);
-        bool allProcessesCompleted();
+        void sortStack();
 
-        bool isQueueSaturated();
-        void addAuxCore();
-        void disableAuxCore();
-        void addProcessToAUXCore(int time);
-        void popAUXCore();
+        void toString();
+
+        
 };
 
 #endif

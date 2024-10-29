@@ -24,6 +24,7 @@ class Proceso {
 
         void decrementLifeTime(int quantity);
         void toString();
+
 };
 
 typedef Proceso* pproceso;
