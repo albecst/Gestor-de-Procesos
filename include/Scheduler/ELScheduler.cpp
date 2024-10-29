@@ -22,15 +22,6 @@ Scheduler::Scheduler(int min)
 
 Scheduler::~Scheduler() {}
 
-void Scheduler::init(int clk)
-{
-    for (int i = 0; i < MIN_CORES; i++)
-    {
-        addProcessToQueue(clk);
-        addProcessToCore(clk);
-    }
-}
-
 void Scheduler::addProcessToStack(Proceso p)
 {
     procesos.push(p);
@@ -39,52 +30,48 @@ void Scheduler::addProcessToStack(Proceso p)
 
 void Scheduler::addProcessToQueue(int time)
 {
-    if (!procesos.isEmpty())
+    if (!procesos.isEmpty() && procesos.top().startTime <= time)
     {
         procesos.sortTTL();
         colaEspera.push(procesos.top());
         colaEspera.sort();
         procesos.pop();
     }
-
-    if (colaEspera.getLength() > 3)
-    {
-        addCore(time);
-    }
 }
 
 void Scheduler::addProcessToCore(int time)
 {
+    int available_cores = cores.getLength();
+    bool encontreCoreVacio = false;
+    int idx = 0;
 
-    /*for (int i = 0; i < cores.getLength(); i++)
+    while (!encontreCoreVacio)
     {
-        Proceso core = cores.getIndex(i-1);
+        Proceso core = cores.getIndex(idx);
 
-        if (core.PID == -1)
+        if (core.PID == -1 && !colaEspera.isEmpty())
         {
-            cores.appendIndex(colaEspera.first(), i);
+            encontreCoreVacio = true; 
+            cores.setIndex(colaEspera.first(), idx);
             colaEspera.pop();
+
             return;
         }
-    }*/
+        else
+        {
+            if(idx == available_cores-1) {
+                addCore(time);
+            }
+        }
+        
+        idx++;
+    }
 
-   int i = 0;
-   while(cores.getIndex(i).PID != -1) {
-        cout << "El core " << i << "está lleno, voy a otro" << endl; 
-        i++;
-   }
-   cores.appendIndex(colaEspera.first(), i);
-   colaEspera.pop();
-
-   for(int j = 0; j<cores.getLength(); j++) {
-        if(cores.getIndex(i).PID == -1) { cout << "ERR" << endl; }
-   }
 }
 
 void Scheduler::addCore(int time)
 {
-    cores.append(Proceso(-1,-1,-1,-1,-1,-1));
-    addProcessToCore(time);
+    cores.append(Proceso());
 }
 
 void Scheduler::popCore(int idx)
@@ -108,13 +95,40 @@ void Scheduler::freeCore(int core, int time)
     }
 }
 
+void Scheduler::check(int time)
+{
+    bool pilaOK = false;
+
+    // MIRAR SI HAY ALGO QUE SE PUEDA METER EN LA COLA DE ESPERA
+    while (!pilaOK && !procesos.isEmpty())
+    {
+        if (procesos.top().startTime <= time)
+        {
+            cout << "Tengo que añadir el PID " << procesos.top().PID << " a la cola porque: " << procesos.top().startTime << " <= " << time << endl;
+            addProcessToQueue(time);
+            addProcessToCore(time);
+            procesos.pop();
+        }
+        else
+        {
+            pilaOK = true;
+        }
+    }
+
+
+
+    for (int i = 0; i < cores.getLength(); i++)
+    {
+        if (cores.getIndex(i).PID != -1 && cores.getIndex(i).ttl <= time)
+        {
+            // Añadir tiempos
+            freeCore(i, time);
+        }
+    }
+}
+
 void Scheduler::toString()
 {
-    addProcessToQueue(5);
-    addProcessToQueue(5);
-    addProcessToQueue(5);
-    addProcessToQueue(5);
-    addProcessToQueue(5);
     cout << "--------------" << endl;
     cout << "STACK: " << endl;
     procesos.showAll();
@@ -123,7 +137,7 @@ void Scheduler::toString()
     colaEspera.showQueue();
     cout << endl;
     cout << "CORES: " << endl;
-    for (int i = 0; i < cores.getLength()-1; i++)
+    for (int i = 0; i < cores.getLength(); i++)
     {
         cout << "Core: " << i + 1 << " PID: " << cores.getIndex(i).PID << endl;
     }

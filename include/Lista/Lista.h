@@ -29,6 +29,8 @@ class Lista {
         Proceso getLast();
         Proceso getIndex(int idx);
 
+        void setIndex(Proceso p, int idx);
+
         void printFirst();
         void printLast();
         void toString();

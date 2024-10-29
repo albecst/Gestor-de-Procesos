@@ -59,8 +59,16 @@ void Lista::appendFront(Proceso p)
     length++;
 }
 
+void Lista::setIndex(Proceso p, int idx) {
+    plista current = nodo;
+
+    for(int i = 0; i<idx; i++) current = current->next;
+
+    current->proceso = p;
+}
+
 void Lista::appendIndex(Proceso p, int idx) {
-    cout << "YESS" << endl;
+    
 
     if (idx <= 0) {  // Añadir al inicio si idx es 0 o negativo
         appendFront(p);
@@ -82,6 +90,7 @@ void Lista::appendIndex(Proceso p, int idx) {
     plista insert = new NodoLista(p);
     insert->next = current->next;
     current->next = insert;  
+    length++;
 }
 
 // Funciones de borrado
@@ -183,11 +192,16 @@ void Lista::toString()
 {
     plista current = nodo;
 
-    while (current != NULL)
+    /*while (current != NULL)
     {
         cout << current->proceso.PID << ", ";
         current = current->next;
-    }
+    }*/
+
+   for(int i = 0; i<length; i++) {
+        cout << current->proceso.PID << ", ";
+        current = current->next;
+   }
 
     cout << endl;
 }
