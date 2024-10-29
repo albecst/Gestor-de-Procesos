@@ -5,5 +5,4 @@ test_compile.sh
 
 mi_programa
 
-src/pruebaManúMain.cpp
-src/test_lista.cpp
+test_lista.cpp
