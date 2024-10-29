@@ -11,9 +11,12 @@ Scheduler::Scheduler()
 
 Scheduler::~Scheduler() {}
 
-void Scheduler::addProcessToQueue()
+// Scheduler.cpp
+#include "Scheduler.h"
+
+void Scheduler::addProcessToQueue(int sys_clk)
 {
-    if (!procesos.isEmpty()) //TODO: Habría que añadir si (!procesos.isEmpty() && procesos.top().startTime <= SYS_CLK) 
+    if (!procesos.isEmpty() && procesos.top().startTime <= sys_clk)
     {
         procesos.sortTTL(); // Ordenar la pila de procesos
         colaEspera.push(procesos.top());
@@ -61,7 +64,6 @@ void Scheduler::freeCore(int core, int time)
     case 1:
         if (core_1.PID != -1)
         {
-            tiempos.push_back(time - core_1.startTime);
 
             cout << "El proceso con PID: " << core_1.PID << " ha acabado, se ha sacado del core 1" << endl;
             core_1.PID = -1;
@@ -71,7 +73,6 @@ void Scheduler::freeCore(int core, int time)
     case 2:
         if (core_2.PID != -1)
         {
-            tiempos.push_back(time - core_2.startTime);
 
             cout << "El proceso con PID: " << core_2.PID << " ha acabado, se ha sacado del core 2" << endl;
             core_2.PID = -1;
@@ -81,7 +82,6 @@ void Scheduler::freeCore(int core, int time)
     case 3:
         if (core_3.PID != -1)
         {
-            tiempos.push_back(time - core_3.startTime);
 
             cout << "El proceso con PID: " << core_3.PID << " ha acabado, se ha sacado del core 3" << endl;
             core_3.PID = -1;
@@ -92,7 +92,7 @@ void Scheduler::freeCore(int core, int time)
         break;
     }
 
-    addProcessToQueue();
+    addProcessToQueue(time);
     addProcessToCore(time);
 }
 
@@ -127,7 +127,7 @@ void Scheduler::check(int time)
         if (procesos.top().startTime <= time)
         {
             cout << "Tengo que añadir el PID " << procesos.top().PID << " a la cola porque: " << procesos.top().startTime << " <= " << time << endl;
-            addProcessToQueue();
+            addProcessToQueue(time);
         }
         else
         {
@@ -139,32 +139,34 @@ void Scheduler::check(int time)
     addProcessToCore(time);
     addProcessToCore(time);
 
-    if (core_1.ttl <= time)
+    if (core_1.PID != -1 && core_1.ttl <= time)
     {
+        tiempos.push_back(time - core_1.startTime);
         freeCore(1, time);
     }
 
-    if (core_2.ttl <= time)
+    if (core_2.PID != -1 && core_2.ttl <= time)
     {
+        tiempos.push_back(time - core_2.startTime);
         freeCore(2, time);
     }
 
-    if (core_3.ttl <= time)
+    if (core_3.PID != -1 && core_3.ttl <= time)
     {
+        tiempos.push_back(time - core_3.startTime);
         freeCore(3, time);
     }
 }
+// void Scheduler::init(int clk)
+// {
+//     addProcessToQueue();
+//     addProcessToQueue();
+//     addProcessToQueue();
 
-void Scheduler::init(int clk)
-{
-    addProcessToQueue();
-    addProcessToQueue();
-    addProcessToQueue();
-
-    addProcessToCore(clk);
-    addProcessToCore(clk);
-    addProcessToCore(clk);
-}
+//     addProcessToCore(clk);
+//     addProcessToCore(clk);
+//     addProcessToCore(clk);
+// }
 
 // Función que indica si todos los procesos han sido completados
 bool Scheduler::allProcessesCompleted()
