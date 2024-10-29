@@ -51,7 +51,7 @@ void Scheduler::addProcessToCore(int time)
 
         if (core.PID == -1 && !colaEspera.isEmpty())
         {
-            encontreCoreVacio = true; 
+            encontreCoreVacio = true;
             cores.setIndex(colaEspera.first(), idx);
             colaEspera.pop();
 
@@ -59,14 +59,14 @@ void Scheduler::addProcessToCore(int time)
         }
         else
         {
-            if(idx == available_cores-1) {
+            if (idx == available_cores - 1)
+            {
                 addCore(time);
             }
         }
-        
+
         idx++;
     }
-
 }
 
 void Scheduler::addCore(int time)
@@ -88,6 +88,7 @@ void Scheduler::freeCore(int core, int time)
 {
     Proceso f = cores.getIndex(core);
     f.PID = -1;
+    cores.setIndex(f, core);
 
     if (cores.getLength() > MIN_CORES)
     {
@@ -97,31 +98,21 @@ void Scheduler::freeCore(int core, int time)
 
 void Scheduler::check(int time)
 {
-    bool pilaOK = false;
-
-    // MIRAR SI HAY ALGO QUE SE PUEDA METER EN LA COLA DE ESPERA
-    while (!pilaOK && !procesos.isEmpty())
+    // Mover procesos a la cola de espera si su tiempo de inicio es menor o igual al tiempo actual
+    while (!procesos.isEmpty() && procesos.top().startTime <= time)
     {
-        if (procesos.top().startTime <= time)
-        {
-            cout << "Tengo que añadir el PID " << procesos.top().PID << " a la cola porque: " << procesos.top().startTime << " <= " << time << endl;
-            addProcessToQueue(time);
-            addProcessToCore(time);
-            procesos.pop();
-        }
-        else
-        {
-            pilaOK = true;
-        }
+        cout << "Tengo que añadir el PID " << procesos.top().PID << " a la cola porque: " << procesos.top().startTime << " <= " << time << endl;
+        addProcessToQueue(time);
+        addProcessToCore(time);
     }
 
-
-
+    // Liberar núcleos si el tiempo de vida del proceso ha terminado
     for (int i = 0; i < cores.getLength(); i++)
     {
-        if (cores.getIndex(i).PID != -1 && cores.getIndex(i).ttl <= time)
+        Proceso core = cores.getIndex(i);
+        if (core.PID != -1 && (time - core.startTime) >= core.ttl)
         {
-            // Añadir tiempos
+            cout << "Liberando el núcleo " << i << " porque el tiempo de vida del PID " << core.PID << " ha terminado." << endl;
             freeCore(i, time);
         }
     }
