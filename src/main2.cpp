@@ -6,12 +6,12 @@ int SYS_CLK = 0;
 
 int main()
 {
-    Proceso p1(1, 2, 5, 0, -1, 0); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
-    Proceso p2(2, 3, 3, 2, -1, 1);
-    Proceso p3(3, 4, 6, 9, -1, 1);
-    Proceso p4(4, 5, 7, 5, -1, 1);
-    Proceso p5(5, 6, 6, 1, -1, 1);
-    Proceso p6(6, 7, 8, 3, -1, 0); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p1(1, 1, 7, 0, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p2(2, 2, 7, 1, -1, 1);
+    Proceso p3(3, 3, 7, 2, -1, 1);
+    Proceso p4(4, 4, 7, 3, -1, 1);
+    Proceso p5(5, 5, 7, 4, -1, 1);
+    Proceso p6(6, 6, 7, 5, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
     /*Proceso p7(7, 5, 10, 7, -1, 1);
     Proceso p8(8, 5, 10, 9, -1, 1);
     Proceso p9(9, 5, 10, 8, -1, 1);

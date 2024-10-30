@@ -14,6 +14,7 @@ Scheduler::Scheduler(int min)
 {
     MIN_CORES = min;
 
+    // Inicializo los núcleos con procesos vacíos
     for (int i = 0; i < min; i++)
     {
         cores.append(Proceso());
@@ -24,12 +25,14 @@ Scheduler::~Scheduler() {}
 
 void Scheduler::addProcessToStack(Proceso p)
 {
+    // Añado el proceso a la pila y lo ordeno por TTL
     procesos.push(p);
     procesos.sortTTL();
 }
 
 void Scheduler::addProcessToQueue(int time)
 {
+    // Muevo el proceso de la pila a la cola de espera si su tiempo de inicio es menor o igual al tiempo actual
     if (!procesos.isEmpty() && procesos.top().startTime <= time)
     {
         procesos.sortTTL();
@@ -45,15 +48,18 @@ void Scheduler::addProcessToCore(int time)
     bool encontreCoreVacio = false;
     int idx = 0;
 
-    while (!encontreCoreVacio)
+    // Busco un núcleo vacío para asignar un proceso de la cola de espera
+    while (!encontreCoreVacio && idx < available_cores)
     {
         Proceso core = cores.getIndex(idx);
 
         if (core.PID == -1 && !colaEspera.isEmpty())
         {
             encontreCoreVacio = true;
-            cores.setIndex(colaEspera.first(), idx);
+            Proceso proceso = colaEspera.first();
             colaEspera.pop();
+            cores.setIndex(proceso, idx);
+            cout << "Asignando el PID " << proceso.PID << " al núcleo " << idx << endl;
 
             return;
         }
@@ -61,7 +67,13 @@ void Scheduler::addProcessToCore(int time)
         {
             if (idx == available_cores - 1)
             {
-                addCore(time);
+                // Solo añado un nuevo núcleo si hay más de 2 procesos en espera, si no no
+                if (colaEspera.getLength() > 2)
+                {
+                    cout << "HAY " << colaEspera.getLength() << " procesos esperando, añadiendo un nuevo núcleo." << endl;
+                    addCore(time);
+                    available_cores = cores.getLength(); // Actualizar el número de núcleos disponibles
+                }
             }
         }
 
@@ -71,25 +83,29 @@ void Scheduler::addProcessToCore(int time)
 
 void Scheduler::addCore(int time)
 {
+    // Añado un nuevo núcleo con un proceso vacío
     cores.append(Proceso());
 }
 
 void Scheduler::popCore(int idx)
 {
+    // Elimino un núcleo y ajusto los índices de los núcleos restantes (para que sean consecutivos y no se líe)
     cores.popIndex(idx);
     for (int i = idx; i < cores.getLength(); i++)
     {
-        Proceso core = cores.getIndex(idx);
+        Proceso core = cores.getIndex(i);
         core.core = core.core - 1;
     }
 }
 
 void Scheduler::freeCore(int core, int time)
 {
+    // Libero un núcleo y actualizo su estado
     Proceso f = cores.getIndex(core);
     f.PID = -1;
-    cores.setIndex(f, core);
+    cores.setIndex(f, core); // Aquí el núcleo se actualiza correctamente
 
+    // Elimino el núcleo si hay más de los requeridos
     if (cores.getLength() > MIN_CORES)
     {
         popCore(core);
@@ -98,15 +114,17 @@ void Scheduler::freeCore(int core, int time)
 
 void Scheduler::check(int time)
 {
-    // Mover procesos a la cola de espera si su tiempo de inicio es menor o igual al tiempo actual
+    // Muevo procesos a la cola de espera si su tiempo de inicio es menor o igual al tiempo actual
     while (!procesos.isEmpty() && procesos.top().startTime <= time)
     {
         cout << "Tengo que añadir el PID " << procesos.top().PID << " a la cola porque: " << procesos.top().startTime << " <= " << time << endl;
         addProcessToQueue(time);
-        addProcessToCore(time);
     }
 
-    // Liberar núcleos si el tiempo de vida del proceso ha terminado
+    // Asigno procesos de la cola de espera a los núcleos libres
+    addProcessToCore(time);
+
+    // Libero núcleos si el tiempo de vida del proceso ha terminado
     for (int i = 0; i < cores.getLength(); i++)
     {
         Proceso core = cores.getIndex(i);
@@ -116,6 +134,9 @@ void Scheduler::check(int time)
             freeCore(i, time);
         }
     }
+
+    // Asigno procesos de la cola de espera a los núcleos libres nuevamente después de liberar núcleos
+    addProcessToCore(time);
 }
 
 void Scheduler::toString()
