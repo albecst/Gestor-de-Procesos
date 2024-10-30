@@ -199,7 +199,7 @@ void Lista::toString()
     }*/
 
    for(int i = 0; i<length; i++) {
-        cout << current->proceso.PID << ", ";
+        cout << "| Núcleo " << i << ": " << current->proceso.PID << " |";
         current = current->next;
    }
 

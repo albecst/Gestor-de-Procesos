@@ -6,6 +6,7 @@
 #include "Cola/NodoCola.h"
 #include "Lista/NodoLista.h"
 #include "Lista/Lista.h"
+#include <vector>
 
 #include <iostream>
 using namespace std;
@@ -141,7 +142,7 @@ void Scheduler::check(int time)
 
 void Scheduler::toString()
 {
-    cout << "--------------" << endl;
+    cout << "---------------------------------------------------------" << endl;
     cout << "STACK: " << endl;
     procesos.showAll();
     cout << endl;
@@ -153,4 +154,84 @@ void Scheduler::toString()
     {
         cout << "Core: " << i + 1 << " PID: " << cores.getIndex(i).PID << endl;
     }
+}
+
+bool Scheduler::allProcessesCompleted()
+{
+    if (procesos.isEmpty() && colaEspera.isEmpty())
+    {
+        for (int i = 0; i < cores.getLength(); i++)
+        {
+            if (cores.getIndex(i).PID != -1)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+int Scheduler::getTotalCores()
+{
+    return cores.getLength();
+}
+
+Lista Scheduler::getCores()
+{
+    return cores;
+}
+
+void Scheduler::printLeastOccupiedCores()
+{
+    vector<int> leastOccupiedCores;
+
+    // Encuentro los núcleos con procesos vacíos (PID == -1)
+    for (int i = 0; i < cores.getLength(); i++)
+    {
+        if (cores.getIndex(i).PID == -1)
+        {
+            leastOccupiedCores.push_back(i);
+        }
+    }
+
+    // Imprimo los núcleos con menos procesos
+    cout << "Núcleos con menos procesos (vacíos): ";
+    for (int core : leastOccupiedCores)
+    {
+        cout << core << " ";
+    }
+    cout << endl;
+}
+
+void Scheduler::printMostOccupiedCores()
+{
+    vector<int> mostOccupiedCores;
+
+    // Encuentro los núcleos con procesos (PID != -1)
+    for (int i = 0; i < cores.getLength(); i++)
+    {
+        if (cores.getIndex(i).PID != -1)
+        {
+            mostOccupiedCores.push_back(i);
+        }
+    }
+
+    // Imprimo los núcleos más ocupados
+    cout << "Núcleos más ocupados: ";
+    for (int core : mostOccupiedCores)
+    {
+        cout << core << " ";
+    }
+    cout << endl;
+}
+
+void Scheduler::showProcesos()
+{
+    procesos.showAll();
+}
+
+void Scheduler::showCores()
+{
+    cores.toString();
 }

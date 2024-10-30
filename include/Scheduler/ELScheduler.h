@@ -34,6 +34,16 @@ class Scheduler {
         void sortStack();
 
         void toString();
+        bool allProcessesCompleted();
+        int getTotalCores();
+        
+        Lista getCores();
+
+        void printLeastOccupiedCores();
+        void printMostOccupiedCores();
+
+        void showProcesos();
+        void showCores();
 
         
 };
