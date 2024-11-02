@@ -115,6 +115,8 @@ void Scheduler::addProcess(Proceso p)
 {
     procesos.push(p);
     procesos.sortTTL();
+    numeroProcesos++;                  // Incrementa el número de procesos
+    setNumeroProcesos(numeroProcesos); // Actualiza el número de procesos
 }
 
 void Scheduler::check(int time)
@@ -195,4 +197,14 @@ Pila Scheduler::getProcesos()
 vector<int> Scheduler::getTiempos()
 {
     return tiempos;
+}
+
+void Scheduler::setNumeroProcesos(int n)
+{
+    numeroProcesos = n;
+}
+
+int Scheduler::getNumeroProcesos()
+{
+    return numeroProcesos;
 }

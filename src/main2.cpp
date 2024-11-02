@@ -97,21 +97,21 @@ void simulateAllProcesses()
         cout << endl;
     }
 
-    // TODO: Calcular el tiempo medio de estancia en el SO de los procesos (ya mañana que me duele la cabeza) 
-    // vector<int> tiempos = s.getTiempos();
-    // float tiempoTotalP = 0;
+    // TODO: Calcular el tiempo medio de estancia en el SO de los procesos (ya mañana que me duele la cabeza)
+    vector<int> tiempos = s.getTiempos();
+    float tiempoTotalP = 0;
 
-    // float numeroTiempos = tiempos.size();
+    float numeroTiempos = tiempos.size();
 
-    // for (int tiempo : tiempos)
-    // {
-    // tiempoTotalP += tiempo;
-    // }
+    for (int tiempo : tiempos)
+    {
+        tiempoTotalP += tiempo;
+    }
 
     cout << "Todos los procesos han sido ejecutados." << endl;
-    // cout << "El tamaño de tiempos es de: " << numeroTiempos << endl;
-    // cout << "El tiempo total de estancia de los recursos en SO es de " << tiempoTotalP << " minutos." << endl;
-    // cout << "El tiempo medio de estancia en el SO de los procesos es de: " << tiempoTotalP / numeroTiempos << " minutos." << endl;
+    cout << "El tamaño de tiempos es de: " << numeroTiempos << endl;
+    cout << "El tiempo total de estancia de los recursos en SO es de " << tiempoTotalP << " minutos." << endl;
+    cout << "El tiempo medio de estancia en el SO de los procesos es de: " << tiempoTotalP / numeroTiempos << " minutos." << endl;
 }
 
 int main()

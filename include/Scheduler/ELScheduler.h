@@ -8,44 +8,47 @@
 #include "Cola/NodoCola.h"
 #include "Lista/NodoLista.h"
 #include "Lista/Lista.h"
+#include <vector>
 
-class Scheduler {
-    private:
-        Pila procesos;
-        Cola colaEspera; // Máximo 2 en espera, si no, crear otro core
-        Lista cores;
+class Scheduler
+{
+private:
+    Pila procesos;
+    Cola colaEspera; // Máximo 2 en espera, si no, crear otro core
+    Lista cores;
+    vector<int> tiempos;
+    vector<int> aux;
 
-        int MIN_CORES;
+    int MIN_CORES;
 
-    public:
-        Scheduler(int min);
-        ~Scheduler();
+public:
+    Scheduler(int min);
+    ~Scheduler();
 
-        void init(int clk);
+    void init(int clk);
 
-        void addProcessToStack(Proceso p);
-        void addProcessToQueue(int time);
-        void addProcessToCore(int time);
-        void addCore(int time);
-        void popCore(int idx);
-        void freeCore(int core, int time);
-        void check(int time);
+    void addProcessToStack(Proceso p);
+    void addProcessToQueue(int time);
+    void addProcessToCore(int time);
+    void addCore(int time);
+    void popCore(int idx);
+    void freeCore(int core, int time);
+    void check(int time);
 
-        void sortStack();
+    void sortStack();
 
-        void toString();
-        bool allProcessesCompleted();
-        int getTotalCores();
-        
-        Lista getCores();
+    void toString();
+    bool allProcessesCompleted();
+    int getTotalCores();
 
-        void printLeastOccupiedCores();
-        void printMostOccupiedCores();
+    Lista getCores();
 
-        void showProcesos();
-        void showCores();
+    void printLeastOccupiedCores();
+    void printMostOccupiedCores();
 
-        
+    void showProcesos();
+    void showCores();
+    vector<int> getTiempos();
 };
 
 #endif

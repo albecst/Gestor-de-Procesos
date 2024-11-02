@@ -12,12 +12,12 @@ void incrementTime(int cantidad) { SYS_CLK += cantidad; }
 // 1: Crear la pila de procesos
 void createProcessStack()
 {
-    Proceso p1(1, 5, 5, 8, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
-    Proceso p2(2, 6, 10, 7, -1, 1);
-    Proceso p3(3, 7, 10, 9, -1, 1);
-    Proceso p4(4, 8, 10, 8, -1, 1);
-    Proceso p5(5, 9, 6, 1, -1, 1);
-    Proceso p6(6, 0, 8, 3,-1, 1);
+    Proceso p1(1, 1, 5, 1, -1, 0); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p2(2, 1, 3, 2, -1, 1);
+    Proceso p3(3, 1, 6, 9, -1, 1);
+    Proceso p4(4, 1, 7, 5, -1, 1);
+    Proceso p5(5, 1, 6, 1, -1, 1);
+    Proceso p6(6, 1, 8, 3, -1, 1);
 
     scheduler.addProcess(p1);
     scheduler.addProcess(p2);
@@ -82,9 +82,6 @@ void simulateTime()
 // 7: Simular el funcionamiento de todos los procesos, devuelve el tiempo medio de estancia en el SO de los procesos
 void simulateAllProcesses()
 {
-
-
-
     while (!scheduler.allProcessesCompleted())
     {
         incrementTime(1);

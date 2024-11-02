@@ -31,14 +31,15 @@ void Scheduler::addProcessToStack(Proceso p)
     procesos.sortTTL();
 }
 
-void Scheduler::addProcessToQueue(int time)
+void Scheduler::addProcessToQueue(int sys_clk)
 {
     // Muevo el proceso de la pila a la cola de espera si su tiempo de inicio es menor o igual al tiempo actual
-    if (!procesos.isEmpty() && procesos.top().startTime <= time)
+    if (!procesos.isEmpty() && procesos.top().startTime <= sys_clk)
     {
         procesos.sortTTL();
         colaEspera.push(procesos.top());
         colaEspera.sort();
+        aux.push_back(procesos.top().startTime);
         procesos.pop();
     }
 }
@@ -58,7 +59,9 @@ void Scheduler::addProcessToCore(int time)
         {
             encontreCoreVacio = true;
             Proceso proceso = colaEspera.first();
+            core.ttl = core.ttl + time;
             colaEspera.pop();
+            proceso.startTime = time; // Actualizo el startTime del proceso al tiempo actual
             cores.setIndex(proceso, idx);
             cout << "Asignando el PID " << proceso.PID << " al núcleo " << idx << endl;
 
@@ -132,10 +135,13 @@ void Scheduler::check(int time)
         if (core.PID != -1 && (time - core.startTime) >= core.ttl)
         {
             cout << "Liberando el núcleo " << i << " porque el tiempo de vida del PID " << core.PID << " ha terminado." << endl;
+            cout << "Valor de time antes de push_back para el proceso con PID " << core.PID << ": " << time << endl;
+            cout << "Valor del startTime para el proceso con PID " << core.PID << ": " << aux[0] << endl;
+            tiempos.push_back(time - aux[0]); // Usa el startTime almacenado en aux
+            aux.erase(aux.begin());           // Elimina el startTime usado de aux
             freeCore(i, time);
         }
     }
-
     // Asigno procesos de la cola de espera a los núcleos libres nuevamente después de liberar núcleos
     addProcessToCore(time);
 }
@@ -234,4 +240,9 @@ void Scheduler::showProcesos()
 void Scheduler::showCores()
 {
     cores.toString();
+}
+
+vector<int> Scheduler::getTiempos()
+{
+    return tiempos;
 }
