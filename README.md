@@ -9,24 +9,15 @@ Este proyecto es un gestor de procesos que simula el funcionamiento de un sistem
 - **Simulación de tiempo**: Simula el paso del tiempo y muestra el estado de la pila de procesos, la cola de espera y los núcleos en ejecución.
 - **Cálculo de tiempos**: Calcula el tiempo total y medio de estancia de los procesos en el sistema operativo.
 
-## Instalación
+## Cómo utilizarlo
 
-1. Clona el repositorio:
-    ```sh
-    git clone https://github.com/tu_usuario/gestor-de-procesos.git
-    ```
-2. Navega al directorio del proyecto:
-    ```sh
-    cd gestor-de-procesos
-    ```
-3. Compila el proyecto:
-    ```sh
-    g++ -o gestor main.cpp Scheduler.cpp Proceso.cpp -std=c++11
-    ```
-4. Ejecuta el proyecto:
-    ```sh
-    ./gestor
-    ```
+Para utilizar la parte 1 introducir en la terminal:
+* g++ -I./include src/main.cpp -o main
+* ./main
+
+Para utilizar la parte 2 introducir en la terminal:
+* g++ -I./include src/main2.cpp -o main2
+* ./main2
 
 ## Uso
 
