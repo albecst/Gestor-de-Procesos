@@ -7,7 +7,7 @@
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
 #include "Lista/NodoLista.h"
-#include "Lista/Lista.h"
+#include "Lista/ListaCores.h"
 #include <vector>
 
 class Scheduler
