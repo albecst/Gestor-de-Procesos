@@ -7,29 +7,29 @@ class Lista {
     private:
         plista nodo; 
         int length;
-        friend class Proceso;
+        friend class Core;
 
     public:
         Lista();
-        Lista(Proceso p);
+        Lista(Core c);
         ~Lista();
 
         bool isEmpty();
         int getLength();
 
-        void append(Proceso p);
-        void appendFront(Proceso p);
-        void appendIndex(Proceso p, int idx);
+        void append(Core c);
+        void appendFront(Core c);
+        void appendIndex(Core c, int idx);
 
         void popLast();
         void popFront();
         void popIndex(int idx);
 
-        Proceso getFirst();
-        Proceso getLast();
-        Proceso getIndex(int idx);
+        Core getFirst();
+        Core getLast();
+        Core getIndex(int idx);
 
-        void setIndex(Proceso p, int idx);
+        void setIndex(Core p, int idx);
 
         void printFirst();
         void printLast();

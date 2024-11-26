@@ -6,14 +6,16 @@
 
 class NodoLista {
     public:
-        Proceso proceso;
+        Core core;
         NodoLista* next;
+        
         friend class Proceso;
+        friend class Core;
         friend class Lista;
 
     private:
         NodoLista();
-        NodoLista(Proceso proc, NodoLista* sig = NULL);
+        NodoLista(Core proc, NodoLista* sig = NULL);
         ~NodoLista();
 
 };

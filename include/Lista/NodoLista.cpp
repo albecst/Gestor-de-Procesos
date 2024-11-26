@@ -3,8 +3,8 @@
 
 NodoLista::NodoLista() {}
 
-NodoLista::NodoLista(Proceso proc, NodoLista* sig) {
-    proceso = proc;
+NodoLista::NodoLista(Core core, NodoLista* sig) {
+    core = core;
     next = NULL;
 }
 

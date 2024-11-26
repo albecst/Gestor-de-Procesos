@@ -1,6 +1,7 @@
 #include "NodoLista.h"
 #include "Lista.h"
 #include "Proceso/Proceso.h"
+#include "Core/Core.h"
 #include <iostream>
 
 using namespace std;
@@ -11,9 +12,9 @@ Lista::Lista()
     length = 0;
 }
 
-Lista::Lista(Proceso p)
+Lista::Lista(Core c)
 {
-    nodo = new NodoLista(p, NULL);
+    nodo = new NodoLista(c, NULL);
     length = 1;
 }
 
@@ -29,7 +30,7 @@ bool Lista::isEmpty()
 }
 
 // Funciones de adición
-void Lista::append(Proceso p)
+void Lista::append(Core c)
 {
     if (length != 0)
     {
@@ -40,43 +41,43 @@ void Lista::append(Proceso p)
             current = current->next;
         }
 
-        current->next = new NodoLista(p);
+        current->next = new NodoLista(c);
         length++;
     }
     else
     {
-        nodo = new NodoLista(p);
+        nodo = new NodoLista(c);
         length = 1;
     }
 }
 
-void Lista::appendFront(Proceso p)
+void Lista::appendFront(Core c)
 {
     plista current = nodo;
-    plista nuevo = new NodoLista(p);
+    plista nuevo = new NodoLista(c);
     nuevo->next = current;
     nodo = nuevo;
     length++;
 }
 
-void Lista::setIndex(Proceso p, int idx) {
+void Lista::setIndex(Core c, int idx) {
     plista current = nodo;
 
     for(int i = 0; i<idx; i++) current = current->next;
 
-    current->proceso = p;
+    current->core = c;
 }
 
-void Lista::appendIndex(Proceso p, int idx) {
+void Lista::appendIndex(Core c, int idx) {
     
 
     if (idx <= 0) {  // Añadir al inicio si idx es 0 o negativo
-        appendFront(p);
+        appendFront(c);
         return;
     }
 
     if (idx >= length) {  // Añadir al final si idx es mayor o igual a la longitud actual
-        append(p);
+        append(c);
         return;
     }
 
@@ -87,7 +88,7 @@ void Lista::appendIndex(Proceso p, int idx) {
     }
 
     // Inserta el nuevo nodo en la posición deseada
-    plista insert = new NodoLista(p);
+    plista insert = new NodoLista(c);
     insert->next = current->next;
     current->next = insert;  
     length++;
@@ -145,12 +146,12 @@ void Lista::popIndex(int idx)
 
 // Getters
 
-Proceso Lista::getFirst()
+Core Lista::getFirst()
 {
-    return nodo->proceso;
+    return nodo->core;
 }
 
-Proceso Lista::getLast()
+Core Lista::getLast()
 {
     plista current = nodo;
 
@@ -159,21 +160,22 @@ Proceso Lista::getLast()
         current = current->next;
     }
 
-    return current->proceso;
+    return current->core;
 }
 
-Proceso Lista::getIndex(int idx) {
+Core Lista::getIndex(int idx) {
     plista current = nodo;
     
     for(int i = 0; i<idx; i++) current = current->next;
 
-    return current->proceso;
+    return current->core;
 }
 
 // Funciones para usar en debug
 void Lista::printFirst()
 {
-    cout << nodo->proceso.PID << endl;
+    //cout << nodo->proceso.PID << endl;
+    cout << nodo->core.proceso.PID << endl;
 }
 
 void Lista::printLast()
@@ -185,7 +187,7 @@ void Lista::printLast()
         current = current->next;
     }
 
-    cout << current->proceso.PID << endl;
+    cout << current->core.proceso.PID << endl;
 }
 
 void Lista::toString()
@@ -199,7 +201,7 @@ void Lista::toString()
     }*/
 
    for(int i = 0; i<length; i++) {
-        cout << "| Núcleo " << i << ": " << current->proceso.PID << " |";
+        cout << "| Núcleo " << i << ": " << current->core.proceso.PID << " |";
         current = current->next;
    }
 

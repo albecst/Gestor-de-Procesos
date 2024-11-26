@@ -3,6 +3,8 @@
 
 #include "Proceso/Proceso.h"
 #include "Proceso/Proceso.cpp"
+#include "Core/Core.h"
+#include "Core/Core.cpp"
 #include "Pila/NodoPila.h"
 #include "Pila/NodoPila.cpp"
 #include "Pila/Pila.h"

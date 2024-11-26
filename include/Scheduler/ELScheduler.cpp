@@ -6,6 +6,7 @@
 #include "Cola/NodoCola.h"
 #include "Lista/NodoLista.h"
 #include "Lista/Lista.h"
+#include "Core/Core.h"
 #include <vector>
 
 #include <iostream>
@@ -18,7 +19,7 @@ Scheduler::Scheduler(int min)
     // Inicializo los núcleos con procesos vacíos
     for (int i = 0; i < min; i++)
     {
-        cores.append(Proceso());
+        cores.append(Core());
     }
 }
 
@@ -53,13 +54,13 @@ void Scheduler::addProcessToCore(int time)
     // Busco un núcleo vacío para asignar un proceso de la cola de espera
     while (!encontreCoreVacio && idx < available_cores)
     {
-        Proceso core = cores.getIndex(idx);
+        Core core = cores.getIndex(idx);
 
-        if (core.PID == -1 && !colaEspera.isEmpty())
+        if (core.proceso.PID == -1 && !colaEspera.isEmpty())
         {
             encontreCoreVacio = true;
             Proceso proceso = colaEspera.first();
-            core.ttl = core.ttl + time;
+            core.proceso.ttl = core.proceso.ttl + time;
             colaEspera.pop();
             proceso.startTime = time; // Actualizo el startTime del proceso al tiempo actual
             cores.setIndex(proceso, idx);
@@ -97,16 +98,16 @@ void Scheduler::popCore(int idx)
     cores.popIndex(idx);
     for (int i = idx; i < cores.getLength(); i++)
     {
-        Proceso core = cores.getIndex(i);
-        core.core = core.core - 1;
+        Core core = cores.getIndex(i);
+        core.proceso.PID = core.proceso.PID - 1;
     }
 }
 
 void Scheduler::freeCore(int core, int time)
 {
     // Libero un núcleo y actualizo su estado
-    Proceso f = cores.getIndex(core);
-    f.PID = -1;
+    Core f = cores.getIndex(core);
+    f.proceso.PID = -1;
     cores.setIndex(f, core); // Aquí el núcleo se actualiza correctamente
 
     // Elimino el núcleo si hay más de los requeridos
@@ -131,12 +132,12 @@ void Scheduler::check(int time)
     // Libero núcleos si el tiempo de vida del proceso ha terminado
     for (int i = 0; i < cores.getLength(); i++)
     {
-        Proceso core = cores.getIndex(i);
-        if (core.PID != -1 && (time - core.startTime) >= core.ttl)
+        Core core = cores.getIndex(i);
+        if (core.proceso.PID != -1 && (time - core.proceso.startTime) >= core.proceso.ttl)
         {
-            cout << "Liberando el núcleo " << i << " porque el tiempo de vida del PID " << core.PID << " ha terminado." << endl;
-            cout << "Valor de time antes de push_back para el proceso con PID " << core.PID << ": " << time << endl;
-            cout << "Valor del startTime para el proceso con PID " << core.PID << ": " << aux[0] << endl;
+            cout << "Liberando el núcleo " << i << " porque el tiempo de vida del PID " << core.proceso.PID << " ha terminado." << endl;
+            cout << "Valor de time antes de push_back para el proceso con PID " << core.proceso.PID << ": " << time << endl;
+            cout << "Valor del startTime para el proceso con PID " << core.proceso.PID << ": " << aux[0] << endl;
             tiempos.push_back(time - aux[0]); // Usa el startTime almacenado en aux
             aux.erase(aux.begin());           // Elimina el startTime usado de aux
             freeCore(i, time);
@@ -158,7 +159,7 @@ void Scheduler::toString()
     cout << "CORES: " << endl;
     for (int i = 0; i < cores.getLength(); i++)
     {
-        cout << "Core: " << i + 1 << " PID: " << cores.getIndex(i).PID << endl;
+        cout << "Core: " << i + 1 << " PID: " << cores.getIndex(i).proceso.PID << endl;
     }
 }
 
@@ -168,7 +169,7 @@ bool Scheduler::allProcessesCompleted()
     {
         for (int i = 0; i < cores.getLength(); i++)
         {
-            if (cores.getIndex(i).PID != -1)
+            if (cores.getIndex(i).proceso.PID != -1)
             {
                 return false;
             }
@@ -195,7 +196,7 @@ void Scheduler::printLeastOccupiedCores()
     // Encuentro los núcleos con procesos vacíos (PID == -1)
     for (int i = 0; i < cores.getLength(); i++)
     {
-        if (cores.getIndex(i).PID == -1)
+        if (cores.getIndex(i).proceso.PID == -1)
         {
             leastOccupiedCores.push_back(i);
         }
@@ -217,7 +218,7 @@ void Scheduler::printMostOccupiedCores()
     // Encuentro los núcleos con procesos (PID != -1)
     for (int i = 0; i < cores.getLength(); i++)
     {
-        if (cores.getIndex(i).PID != -1)
+        if (cores.getIndex(i).proceso.PID != -1)
         {
             mostOccupiedCores.push_back(i);
         }
