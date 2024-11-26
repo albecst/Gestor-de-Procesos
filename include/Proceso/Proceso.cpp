@@ -31,6 +31,10 @@ void Proceso::decrementLifeTime(int quantity) {
         ttl-=quantity;
 }
 
+int Proceso::getPriority() {
+    return priority;
+}
+
 void Proceso::toString()
 {
     cout << "PID: " << PID << endl;

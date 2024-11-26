@@ -1,22 +1,30 @@
-
+#include "ABB/NodoArbol.h"
+#include "ABB/NodoArbol.cpp"
+#include "ABB/Arbol.h"
+#include "ABB/Arbol.cpp"
 #include "Proceso/Proceso.h"
 #include "Proceso/Proceso.cpp"
-#include "Lista/NodoLista.h"
-#include "Lista/NodoLista.cpp"
-#include "Lista/Lista.h"
-#include "Lista/Lista.cpp"
 
 int main() {
-    Lista l;
+    Proceso p1(1,1,1,1,1,1);
+    Proceso p2(2,2,2,2,2,2);
+    Proceso p3(3,3,3,3,3,3);
+    Proceso p4(4,4,4,4,4,4);
+    Proceso p5(5,5,5,5,5,5);
 
-    l.append(Proceso(1,1,1,1,1,1));
-    l.append(Proceso(2,1,1,1,1,1));
-    l.append(Proceso(3,1,1,1,1,1));
+    Arbol a(p4);
+    a.append(p3, a.getRoot());
+    a.append(p2, a.getRoot());
+    a.append(p5, a.getRoot());
 
-    l.toString();
-    cout << "------------" << endl;
+    Proceso min = a.getMinP();
+    Proceso max = a.getMaxP();
 
-    l.appendIndex(Proceso(4,1,1,1,1,1), 6);
+    a.toString(a.getRoot());
 
-    l.toString();
+    cout << "MIN: " << min.getPriority() << endl;
+    cout << "MAX: " << max.getPriority() << endl;
+
+    return 0;
+
 }

@@ -15,6 +15,7 @@ class Proceso {
         friend class Pila;
         friend class Cola;
         friend class Lista;
+        friend class Arbol;
         friend class Scheduler;
 
     public:
@@ -23,6 +24,7 @@ class Proceso {
         ~Proceso();
 
         void decrementLifeTime(int quantity);
+        int getPriority();
         void toString();
 
 };
