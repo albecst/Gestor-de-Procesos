@@ -1,7 +1,8 @@
 #include "NodoArbol.h"
 
-NodoArbol::NodoArbol(Proceso proc, parbol i, parbol d) {
-    p = proc;
+NodoArbol::NodoArbol(int prioridad, Lista procesos, parbol i, parbol d) {
+    prio = prioridad;
+    lista = procesos;
     izq = i;
     dch = d;
 }

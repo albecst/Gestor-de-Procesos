@@ -1,73 +1,73 @@
-#include "NodoLista.h"
-#include "Lista.h"
+#include "NodoListaProc.h"
+#include "ListaProc.h"
 #include "Proceso/Proceso.h"
 #include <iostream>
 
 using namespace std;
 
-Lista::Lista()
+ListaProc::ListaProc()
 {
-    nodo = new NodoLista(Proceso(), NULL);
+    nodo = new NodoListaProc(Proceso(), NULL);
     length = 0;
 }
 
-Lista::Lista(Proceso p)
+ListaProc::ListaProc(Proceso p)
 {
-    nodo = new NodoLista(p, NULL);
+    nodo = new NodoListaProc(p, NULL);
     length = 1;
 }
 
-Lista::~Lista()
+ListaProc::~ListaProc()
 {
 }
 
-int Lista::getLength() { return length; }
+int ListaProc::getLength() { return length; }
 
-bool Lista::isEmpty()
+bool ListaProc::isEmpty()
 {
     return length == 0;
 }
 
 // Funciones de adición
-void Lista::append(Proceso p)
+void ListaProc::append(Proceso p)
 {
     if (length != 0)
     {
-        plista current = nodo;
+        plistap current = nodo;
 
         while (current->next != NULL)
         {
             current = current->next;
         }
 
-        current->next = new NodoLista(p);
+        current->next = new NodoListaProc(p);
         length++;
     }
     else
     {
-        nodo = new NodoLista(p);
+        nodo = new NodoListaProc(p);
         length = 1;
     }
 }
 
-void Lista::appendFront(Proceso p)
+void ListaProc::appendFront(Proceso p)
 {
-    plista current = nodo;
-    plista nuevo = new NodoLista(p);
+    plistap current = nodo;
+    plistap nuevo = new NodoListaProc(p);
     nuevo->next = current;
     nodo = nuevo;
     length++;
 }
 
-void Lista::setIndex(Proceso p, int idx) {
-    plista current = nodo;
+void ListaProc::setIndex(Proceso p, int idx) {
+    plistap current = nodo;
 
     for(int i = 0; i<idx; i++) current = current->next;
 
     current->proceso = p;
 }
 
-void Lista::appendIndex(Proceso p, int idx) {
+void ListaProc::appendIndex(Proceso p, int idx) {
     
 
     if (idx <= 0) {  // Añadir al inicio si idx es 0 o negativo
@@ -80,23 +80,23 @@ void Lista::appendIndex(Proceso p, int idx) {
         return;
     }
 
-    plista current = nodo;
+    plistap current = nodo;
 
     for (int count = 0; count < idx - 1; count++) {  // Avanza hasta el nodo anterior a idx
         current = current->next;
     }
 
     // Inserta el nuevo nodo en la posición deseada
-    plista insert = new NodoLista(p);
+    plistap insert = new NodoListaProc(p);
     insert->next = current->next;
     current->next = insert;  
     length++;
 }
 
 // Funciones de borrado
-void Lista::popLast()
+void ListaProc::popLast()
 {
-    plista current = nodo;
+    plistap current = nodo;
 
     while (current->next->next != NULL)
     {
@@ -106,16 +106,16 @@ void Lista::popLast()
     current->next = NULL;
     length--;
 }
-void Lista::popFront()
+void ListaProc::popFront()
 {
     nodo = nodo->next;
     length--;
 }
 
-void Lista::popIndex(int idx)
+void ListaProc::popIndex(int idx)
 {
-    plista current = nodo;
-    plista sig = nodo;
+    plistap current = nodo;
+    plistap sig = nodo;
     int count = 0;
 
     if(idx == 0) { popFront(); return;}
@@ -145,14 +145,14 @@ void Lista::popIndex(int idx)
 
 // Getters
 
-Proceso Lista::getFirst()
+Proceso ListaProc::getFirst()
 {
     return nodo->proceso;
 }
 
-Proceso Lista::getLast()
+Proceso ListaProc::getLast()
 {
-    plista current = nodo;
+    plistap current = nodo;
 
     while (current->next != NULL)
     {
@@ -162,8 +162,8 @@ Proceso Lista::getLast()
     return current->proceso;
 }
 
-Proceso Lista::getIndex(int idx) {
-    plista current = nodo;
+Proceso ListaProc::getIndex(int idx) {
+    plistap current = nodo;
     
     for(int i = 0; i<idx; i++) current = current->next;
 
@@ -171,14 +171,14 @@ Proceso Lista::getIndex(int idx) {
 }
 
 // Funciones para usar en debug
-void Lista::printFirst()
+void ListaProc::printFirst()
 {
     cout << nodo->proceso.PID << endl;
 }
 
-void Lista::printLast()
+void ListaProc::printLast()
 {
-    plista current = nodo;
+    plistap current = nodo;
 
     while (current->next != NULL)
     {
@@ -188,9 +188,9 @@ void Lista::printLast()
     cout << current->proceso.PID << endl;
 }
 
-void Lista::toString()
+void ListaProc::toString()
 {
-    plista current = nodo;
+    plistap current = nodo;
 
     /*while (current != NULL)
     {

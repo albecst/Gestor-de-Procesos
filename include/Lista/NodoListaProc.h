@@ -1,23 +1,23 @@
-#ifndef NODOLISTA_H
-#define NODOLISTA_H
+#ifndef NODOLISTAPROC_H
+#define NODOLISTAPROC_H
 
 #include "Proceso/Proceso.h"
 #include <iostream>
 
-class NodoLista {
+class NodoListaProc {
     public:
         Proceso proceso;
-        NodoLista* next;
+        NodoListaProc* next;
         friend class Proceso;
-        friend class Lista;
+        friend class ListaProc;
 
     private:
-        NodoLista();
-        NodoLista(Proceso proc, NodoLista* sig = NULL);
-        ~NodoLista();
+        NodoListaProc();
+        NodoListaProc(Proceso proc, NodoListaProc* sig = NULL);
+        ~NodoListaProc();
 
 };
 
-typedef NodoLista* plista;
+typedef NodoListaProc* plistap;
 
 #endif

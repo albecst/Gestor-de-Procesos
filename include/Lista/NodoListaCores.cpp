@@ -1,11 +1,11 @@
 #include "NodoListaCores.h"
 #include "Core/Core.h"
 
-NodoLista::NodoLista() {}
+NodoListaCores::NodoListaCores() {}
 
-NodoLista::NodoLista(Core core, NodoLista* sig) {
+NodoListaCores::NodoListaCores(Core core, NodoListaCores* sig) {
     core = core;
     next = NULL;
 }
 
-NodoLista::~NodoLista() {}
+NodoListaCores::~NodoListaCores() {}

@@ -2,16 +2,18 @@
 #define NODOARBOL_H
 
 #include "Proceso/Proceso.h"
+#include "Lista/ListaProc.h"
 #include <iostream>
 
 class NodoArbol {
     private:
-        Proceso p;
+        int prioridad;
+        ListaProc procesos;
         NodoArbol* izq;
         NodoArbol* dch;
         friend class Arbol;
     public:
-        NodoArbol(Proceso proc, NodoArbol* i = NULL, NodoArbol* d = NULL);
+        NodoArbol(int prioridad, ListaProc procesos, NodoArbol* i = NULL, NodoArbol* d = NULL);
         ~NodoArbol();
 };
 

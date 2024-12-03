@@ -1,18 +1,18 @@
-#ifndef LISTA_H
-#define LISTA_H
+#ifndef LISTAPROC_H
+#define LISTAPROC_H
 #include "NodoListaProc.h"
 #include "Proceso/Proceso.h"
 
-class Lista {
+class ListaProc {
     private:
-        plista nodo; 
+        plistap nodo; 
         int length;
         friend class Proceso;
 
     public:
-        Lista();
-        Lista(Proceso p);
-        ~Lista();
+        ListaProc();
+        ListaProc(Proceso p);
+        ~ListaProc();
 
         bool isEmpty();
         int getLength();

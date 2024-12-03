@@ -6,7 +6,7 @@
 #include "Pila/Pila.h"
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
-#include "Lista/NodoLista.h"
+#include "Lista/NodoListaCores.h"
 #include "Lista/ListaCores.h"
 #include <vector>
 
@@ -15,7 +15,7 @@ class Scheduler
 private:
     Pila procesos;
     Cola colaEspera; // Máximo 2 en espera, si no, crear otro core
-    Lista cores;
+    ListaCores cores;
     vector<int> tiempos;
     vector<int> aux;
 
@@ -41,7 +41,7 @@ public:
     bool allProcessesCompleted();
     int getTotalCores();
 
-    Lista getCores();
+    ListaCores getCores();
 
     void printLeastOccupiedCores();
     void printMostOccupiedCores();

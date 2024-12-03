@@ -13,10 +13,16 @@
 #include "Cola/NodoCola.cpp"
 #include "Cola/Cola.h"
 #include "Cola/Cola.cpp"
-#include "Lista/NodoLista.h"
-#include "Lista/NodoLista.cpp"
-#include "Lista/Lista.h"
-#include "Lista/Lista.cpp"
+#include "Lista/NodoListaProc.h"
+#include "Lista/NodoListaProc.cpp"
+#include "Lista/ListaProc.h"
+#include "Lista/ListaProc.cpp"
+
+#include "Lista/NodoListaCores.h"
+#include "Lista/NodoListaCores.cpp"
+#include "Lista/ListaCores.h"
+#include "Lista/ListaCores.cpp"
+
 #include "Scheduler/ELScheduler.h"
 #include "Scheduler/ELScheduler.cpp"
 

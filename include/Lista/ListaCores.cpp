@@ -6,69 +6,69 @@
 
 using namespace std;
 
-Lista::Lista()
+ListaCores::ListaCores()
 {
-    nodo = new NodoLista(Proceso(), NULL);
+    nodo = new NodoListaCores(Proceso(), NULL);
     length = 0;
 }
 
-Lista::Lista(Core c)
+ListaCores::ListaCores(Core c)
 {
-    nodo = new NodoLista(c, NULL);
+    nodo = new NodoListaCores(c, NULL);
     length = 1;
 }
 
-Lista::~Lista()
+ListaCores::~ListaCores()
 {
 }
 
-int Lista::getLength() { return length; }
+int ListaCores::getLength() { return length; }
 
-bool Lista::isEmpty()
+bool ListaCores::isEmpty()
 {
     return length == 0;
 }
 
 // Funciones de adición
-void Lista::append(Core c)
+void ListaCores::append(Core c)
 {
     if (length != 0)
     {
-        plista current = nodo;
+        plistac current = nodo;
 
         while (current->next != NULL)
         {
             current = current->next;
         }
 
-        current->next = new NodoLista(c);
+        current->next = new NodoListaCores(c);
         length++;
     }
     else
     {
-        nodo = new NodoLista(c);
+        nodo = new NodoListaCores(c);
         length = 1;
     }
 }
 
-void Lista::appendFront(Core c)
+void ListaCores::appendFront(Core c)
 {
-    plista current = nodo;
-    plista nuevo = new NodoLista(c);
+    plistac current = nodo;
+    plistac nuevo = new NodoListaCores(c);
     nuevo->next = current;
     nodo = nuevo;
     length++;
 }
 
-void Lista::setIndex(Core c, int idx) {
-    plista current = nodo;
+void ListaCores::setIndex(Core c, int idx) {
+    plistac current = nodo;
 
     for(int i = 0; i<idx; i++) current = current->next;
 
     current->core = c;
 }
 
-void Lista::appendIndex(Core c, int idx) {
+void ListaCores::appendIndex(Core c, int idx) {
     
 
     if (idx <= 0) {  // Añadir al inicio si idx es 0 o negativo
@@ -81,23 +81,23 @@ void Lista::appendIndex(Core c, int idx) {
         return;
     }
 
-    plista current = nodo;
+    plistac current = nodo;
 
     for (int count = 0; count < idx - 1; count++) {  // Avanza hasta el nodo anterior a idx
         current = current->next;
     }
 
     // Inserta el nuevo nodo en la posición deseada
-    plista insert = new NodoLista(c);
+    plistac insert = new NodoListaCores(c);
     insert->next = current->next;
     current->next = insert;  
     length++;
 }
 
 // Funciones de borrado
-void Lista::popLast()
+void ListaCores::popLast()
 {
-    plista current = nodo;
+    plistac current = nodo;
 
     while (current->next->next != NULL)
     {
@@ -107,16 +107,16 @@ void Lista::popLast()
     current->next = NULL;
     length--;
 }
-void Lista::popFront()
+void ListaCores::popFront()
 {
     nodo = nodo->next;
     length--;
 }
 
-void Lista::popIndex(int idx)
+void ListaCores::popIndex(int idx)
 {
-    plista current = nodo;
-    plista sig = nodo;
+    plistac current = nodo;
+    plistac sig = nodo;
     int count = 0;
 
     if(idx == 0) { popFront(); return;}
@@ -146,14 +146,14 @@ void Lista::popIndex(int idx)
 
 // Getters
 
-Core Lista::getFirst()
+Core ListaCores::getFirst()
 {
     return nodo->core;
 }
 
-Core Lista::getLast()
+Core ListaCores::getLast()
 {
-    plista current = nodo;
+    plistac current = nodo;
 
     while (current->next != NULL)
     {
@@ -163,8 +163,8 @@ Core Lista::getLast()
     return current->core;
 }
 
-Core Lista::getIndex(int idx) {
-    plista current = nodo;
+Core ListaCores::getIndex(int idx) {
+    plistac current = nodo;
     
     for(int i = 0; i<idx; i++) current = current->next;
 
@@ -172,15 +172,15 @@ Core Lista::getIndex(int idx) {
 }
 
 // Funciones para usar en debug
-void Lista::printFirst()
+void ListaCores::printFirst()
 {
     //cout << nodo->proceso.PID << endl;
     cout << nodo->core.proceso.PID << endl;
 }
 
-void Lista::printLast()
+void ListaCores::printLast()
 {
-    plista current = nodo;
+    plistac current = nodo;
 
     while (current->next != NULL)
     {
@@ -190,9 +190,9 @@ void Lista::printLast()
     cout << current->core.proceso.PID << endl;
 }
 
-void Lista::toString()
+void ListaCores::toString()
 {
-    plista current = nodo;
+    plistac current = nodo;
 
     /*while (current != NULL)
     {

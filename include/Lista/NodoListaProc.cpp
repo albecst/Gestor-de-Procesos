@@ -1,11 +1,11 @@
 #include "NodoListaProc.h"
 #include "Proceso/Proceso.h"
 
-NodoLista::NodoLista() {}
+NodoListaProc::NodoListaProc() {}
 
-NodoLista::NodoLista(Proceso proc, NodoLista* sig) {
+NodoListaProc::NodoListaProc(Proceso proc, NodoListaProc* sig) {
     proceso = proc;
     next = NULL;
 }
 
-NodoLista::~NodoLista() {}
+NodoListaProc::~NodoListaProc() {}

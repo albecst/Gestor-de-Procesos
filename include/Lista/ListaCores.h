@@ -1,18 +1,18 @@
-#ifndef LISTA_H
-#define LISTA_H
+#ifndef LISTACORES_H
+#define LISTACORES_H
 #include "NodoListaCores.h"
 #include "Proceso/Proceso.h"
 
-class Lista {
+class ListaCores {
     private:
-        plista nodo; 
+        plistac nodo; 
         int length;
         friend class Core;
 
     public:
-        Lista();
-        Lista(Core c);
-        ~Lista();
+        ListaCores();
+        ListaCores(Core c);
+        ~ListaCores();
 
         bool isEmpty();
         int getLength();

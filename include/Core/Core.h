@@ -10,7 +10,7 @@ class Core
 
         friend class Pila;
         friend class Cola;
-        friend class Lista;
+        friend class ListaCores;
         friend class Arbol;
         friend class Scheduler;
         friend class Proceso;

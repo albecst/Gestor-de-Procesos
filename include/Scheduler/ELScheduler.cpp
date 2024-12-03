@@ -4,7 +4,7 @@
 #include "Pila/Pila.h"
 #include "Cola/Cola.h"
 #include "Cola/NodoCola.h"
-#include "Lista/NodoLista.h"
+#include "Lista/NodoListaCores.h"
 #include "Lista/ListaCores.h"
 #include "Core/Core.h"
 #include <vector>
@@ -184,7 +184,7 @@ int Scheduler::getTotalCores()
     return cores.getLength();
 }
 
-Lista Scheduler::getCores()
+ListaCores Scheduler::getCores()
 {
     return cores;
 }
