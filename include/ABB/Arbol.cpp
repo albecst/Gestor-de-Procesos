@@ -78,17 +78,22 @@ bool Arbol::existsNode(parbol a, int p)
     }
 }
 
-void Arbol::addProccessToList(parbol a, Proceso p) {
-    if(existsNode(raiz, p.priority))  {
-        if(a->prioridad == p.priority) {
-            cout << "VOY A APPENDEAR" << endl;
+void Arbol::addProccessToList(parbol a, Proceso p)
+{
+    if (existsNode(raiz, p.priority))
+    {
+        if (a->prioridad == p.priority)
+        {
             a->procesos.append(p);
-        } else {
-            if(a->prioridad < p.priority) {
-                cout << "VOY A BUSCAR POR DCH: " << a->prioridad << " | " << p.priority << endl;
+        }
+        else
+        {
+            if (a->prioridad < p.priority)
+            {
                 addProccessToList(a->dch, p);
-            }else {
-                cout << "VOY A BUSCAR POR IZQ: " << a->prioridad << " | " << p.priority << endl;
+            }
+            else
+            {
                 addProccessToList(a->izq, p);
             }
         }
@@ -146,6 +151,24 @@ void Arbol::append(Proceso p, parbol a)
 parbol Arbol::getRoot()
 {
     return raiz;
+}
+
+ListaProc Arbol::getProcsByPriority(parbol a, int p)
+{
+    if (!existsNode(raiz, p))
+    {
+        return ListaProc();
+    } else {
+        if(a->prioridad == p) {
+            return a->procesos;
+        }else {
+            if(a->prioridad > p) {
+                return getProcsByPriority(a->izq, p);
+            } else {
+                return getProcsByPriority(a->dch, p);
+            }
+        }
+    }
 }
 
 void Arbol::toString(parbol a)

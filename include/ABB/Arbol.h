@@ -22,6 +22,7 @@ class Arbol
         parbol dch();
         parbol getRoot();
         void toString(parbol a);
+        ListaProc getProcsByPriority(parbol a, int p);
         
         void verInorden(parbol a);
         bool existsNode(parbol a ,int p);

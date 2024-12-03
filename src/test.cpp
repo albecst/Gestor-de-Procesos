@@ -27,7 +27,11 @@ int main() {
     a.append(p3, a.getRoot());
     a.append(p4, a.getRoot());
 
-    a.toString(a.getRoot());
+    //a.toString(a.getRoot());
+
+    ListaProc dev = a.getProcsByPriority(a.getRoot(), 4);
+
+    dev.toString();
 
     return 0;
 
