@@ -24,6 +24,8 @@ class Arbol
         void toString(parbol a);
         
         void verInorden(parbol a);
+        bool existsNode(parbol a ,int p);
+        void addProccessToList(parbol a, Proceso p);
 
 };
 

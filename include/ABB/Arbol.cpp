@@ -1,100 +1,163 @@
 #include "NodoArbol.h"
 #include "Arbol.h"
+#include "Lista/NodoListaProc.h"
+#include "Lista/ListaProc.h"
+
 using namespace std;
 
-Arbol::Arbol(Proceso p) {
-    raiz = new NodoArbol(p);
+Arbol::Arbol(Proceso p)
+{
+    raiz = new NodoArbol(p.priority, ListaProc(p));
     altura = 0;
 }
 
 Arbol::~Arbol() {};
 
-bool Arbol::isEmpty() {
+bool Arbol::isEmpty()
+{
     return raiz == NULL;
 }
 
-int Arbol::getSize() {
+int Arbol::getSize()
+{
     return altura;
 }
 
-parbol Arbol::getMin() {
+parbol Arbol::getMin()
+{
     parbol r_tmp = raiz;
-    
-    if(altura == 0) { return raiz; }
 
-    while(r_tmp->izq != NULL) {
+    if (altura == 0)
+    {
+        return raiz;
+    }
+
+    while (r_tmp->izq != NULL)
+    {
         r_tmp = r_tmp->izq;
     }
 
     return r_tmp;
 }
 
-Proceso Arbol::getMinP() {
-    return getMin()->p;
-}
-
-parbol Arbol::getMax() {
+parbol Arbol::getMax()
+{
     parbol r_tmp = raiz;
 
-    if(altura == 0) { return raiz; }
-     
-    while(r_tmp->dch != NULL) {
+    if (altura == 0)
+    {
+        return raiz;
+    }
+
+    while (r_tmp->dch != NULL)
+    {
         r_tmp = r_tmp->dch;
     }
     return r_tmp;
 }
 
-Proceso Arbol::getMaxP(){
-    return getMax()->p;
+parbol Arbol::izq()
+{
+    return raiz->izq;
 }
 
-parbol Arbol::izq() {
-     return raiz->izq;
-}
-
-parbol Arbol::dch(){
+parbol Arbol::dch()
+{
     return raiz->dch;
 }
 
-void Arbol::append(Proceso p, parbol a) {
-    altura++;
-    if (raiz == NULL) {
-        raiz = new NodoArbol(p);
-        return;
+bool Arbol::existsNode(parbol a, int p)
+{
+    if (a == NULL)
+    {
+        return false;
     }
-
-    if (a == NULL) {
-        a = raiz;
+    else
+    {
+        return a->prioridad == p || existsNode(a->izq, p) || existsNode(a->dch, p);
     }
-    if (p.priority < a->p.priority) {
-        if (a->izq == NULL) {
-            a->izq = new NodoArbol(p);
-        } else {
-            append(p, a->izq);
-        }
-    } else {
-        if (a->dch == NULL) {
-            a->dch = new NodoArbol(p);
+}
 
+void Arbol::addProccessToList(parbol a, Proceso p) {
+    if(existsNode(raiz, p.priority))  {
+        if(raiz->prioridad == p.priority) {
+            raiz->procesos.append(p);
         } else {
-            append(p, a->dch);
+            if(a->prioridad < p.priority) {
+                addProccessToList(raiz->dch, p);
+            }else {
+                addProccessToList(raiz->izq, p);
+            }
         }
     }
 }
 
-parbol Arbol::getRoot(){
+void Arbol::append(Proceso p, parbol a)
+{
+
+    if (existsNode(raiz, p.priority))
+    {
+        // Buscar y append
+        addProccessToList(raiz, p);
+    }
+    else
+    {
+        // Crear nodo con lista unitaria
+
+        altura++;
+        if (raiz == NULL)
+        {
+            raiz = new NodoArbol(p.priority, ListaProc(p));
+            return;
+        }
+
+        if (a == NULL)
+        {
+            a = raiz;
+        }
+        if (p.priority < a->prioridad)
+        {
+            if (a->izq == NULL)
+            {
+                a->izq = new NodoArbol(p.priority, ListaProc(p));
+            }
+            else
+            {
+                append(p, a->izq);
+            }
+        }
+        else
+        {
+            if (a->dch == NULL)
+            {
+                a->dch = new NodoArbol(p.priority, ListaProc(p));
+            }
+            else
+            {
+                append(p, a->dch);
+            }
+        }
+    }
+}
+
+parbol Arbol::getRoot()
+{
     return raiz;
 }
 
-void Arbol::toString(parbol a) {
-    if(a != NULL) {
-        cout << a->p.PID << endl;
+void Arbol::toString(parbol a)
+{
+    if (a != NULL)
+    {
+        a->procesos.toString();
 
-        if(a->izq != NULL) {
+        if (a->izq != NULL)
+        {
             toString(a->izq);
         }
 
-        if(a->dch != NULL) {
+        if (a->dch != NULL)
+        {
             cout << "     ";
             toString(a->dch);
         }

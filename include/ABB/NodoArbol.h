@@ -13,7 +13,7 @@ class NodoArbol {
         NodoArbol* dch;
         friend class Arbol;
     public:
-        NodoArbol(int prioridad, ListaProc procesos, NodoArbol* i = NULL, NodoArbol* d = NULL);
+        NodoArbol(int priority, ListaProc list, NodoArbol* i = NULL, NodoArbol* d = NULL);
         ~NodoArbol();
 };
 
