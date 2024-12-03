@@ -80,13 +80,16 @@ bool Arbol::existsNode(parbol a, int p)
 
 void Arbol::addProccessToList(parbol a, Proceso p) {
     if(existsNode(raiz, p.priority))  {
-        if(raiz->prioridad == p.priority) {
-            raiz->procesos.append(p);
+        if(a->prioridad == p.priority) {
+            cout << "VOY A APPENDEAR" << endl;
+            a->procesos.append(p);
         } else {
             if(a->prioridad < p.priority) {
-                addProccessToList(raiz->dch, p);
+                cout << "VOY A BUSCAR POR DCH: " << a->prioridad << " | " << p.priority << endl;
+                addProccessToList(a->dch, p);
             }else {
-                addProccessToList(raiz->izq, p);
+                cout << "VOY A BUSCAR POR IZQ: " << a->prioridad << " | " << p.priority << endl;
+                addProccessToList(a->izq, p);
             }
         }
     }
