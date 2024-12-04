@@ -11,7 +11,9 @@ class NodoArbol {
         ListaProc procesos;
         NodoArbol* izq;
         NodoArbol* dch;
+        
         friend class Arbol;
+        friend class Scheduler;
     public:
         NodoArbol(int priority, ListaProc list, NodoArbol* i = NULL, NodoArbol* d = NULL);
         ~NodoArbol();

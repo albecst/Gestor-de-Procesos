@@ -8,6 +8,10 @@
 #include "Cola/NodoCola.h"
 #include "Lista/NodoListaCores.h"
 #include "Lista/ListaCores.h"
+
+#include "ABB/NodoArbol.h"
+#include "ABB/Arbol.h"
+
 #include <vector>
 
 class Scheduler
@@ -18,6 +22,8 @@ private:
     ListaCores cores;
     vector<int> tiempos;
     vector<int> aux;
+
+    Arbol abb;
 
     int MIN_CORES;
 
@@ -45,6 +51,7 @@ public:
 
     void printLeastOccupiedCores();
     void printMostOccupiedCores();
+    void printTree();
 
     void showProcesos();
     void showCores();

@@ -7,13 +7,16 @@ class Arbol
     private:
         parbol raiz;
         int altura;
+        friend class Scheduler;
     public:
+        Arbol();
         Arbol(Proceso p);
         ~Arbol();
 
         void append(Proceso p, parbol a);
         bool isEmpty();
         int getSize();
+
         parbol getMin();
         Proceso getMinP();
         parbol getMax();
@@ -21,7 +24,9 @@ class Arbol
         parbol izq();
         parbol dch();
         parbol getRoot();
+        
         void toString(parbol a);
+        
         ListaProc getProcsByPriority(parbol a, int p);
         
         void verInorden(parbol a);

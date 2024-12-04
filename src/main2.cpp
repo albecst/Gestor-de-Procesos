@@ -63,6 +63,7 @@ void simulateTime()
     } while (!s.allProcessesCompleted());
 
     cout << "Ya han terminado de ejecutarse todos los procesos. \nSaliendo..." << endl;
+    s.printTree();
 }
 
 // 5: Mostrar los datos de la lista de núcleos

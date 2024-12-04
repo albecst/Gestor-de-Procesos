@@ -2,8 +2,14 @@
 #include "Arbol.h"
 #include "Lista/NodoListaProc.h"
 #include "Lista/ListaProc.h"
-
+#include <iostream>
 using namespace std;
+
+Arbol::Arbol()
+{
+    raiz = NULL;
+    altura = 0;
+}
 
 Arbol::Arbol(Proceso p)
 {
@@ -102,49 +108,53 @@ void Arbol::addProccessToList(parbol a, Proceso p)
 
 void Arbol::append(Proceso p, parbol a)
 {
-
-    if (existsNode(raiz, p.priority))
+    if (raiz != NULL)
     {
-        // Buscar y append
-        addProccessToList(raiz, p);
-    }
-    else
-    {
-        // Crear nodo con lista unitaria
-
-        altura++;
-        if (raiz == NULL)
+        if (existsNode(raiz, p.priority))
         {
-            raiz = new NodoArbol(p.priority, ListaProc(p));
-            return;
-        }
-
-        if (a == NULL)
-        {
-            a = raiz;
-        }
-        if (p.priority < a->prioridad)
-        {
-            if (a->izq == NULL)
-            {
-                a->izq = new NodoArbol(p.priority, ListaProc(p));
-            }
-            else
-            {
-                append(p, a->izq);
-            }
+            // Buscar y append
+            addProccessToList(raiz, p);
         }
         else
         {
-            if (a->dch == NULL)
+            // Crear nodo con lista unitaria
+
+            altura++;
+            if (raiz == NULL)
             {
-                a->dch = new NodoArbol(p.priority, ListaProc(p));
+                raiz = new NodoArbol(p.priority, ListaProc(p));
+                return;
+            }
+
+            if (a == NULL)
+            {
+                a = raiz;
+            }
+            if (p.priority < a->prioridad)
+            {
+                if (a->izq == NULL)
+                {
+                    a->izq = new NodoArbol(p.priority, ListaProc(p));
+                }
+                else
+                {
+                    append(p, a->izq);
+                }
             }
             else
             {
-                append(p, a->dch);
+                if (a->dch == NULL)
+                {
+                    a->dch = new NodoArbol(p.priority, ListaProc(p));
+                }
+                else
+                {
+                    append(p, a->dch);
+                }
             }
         }
+    } else {
+        raiz = new NodoArbol(p.priority, ListaProc(p));
     }
 }
 
@@ -158,13 +168,21 @@ ListaProc Arbol::getProcsByPriority(parbol a, int p)
     if (!existsNode(raiz, p))
     {
         return ListaProc();
-    } else {
-        if(a->prioridad == p) {
+    }
+    else
+    {
+        if (a->prioridad == p)
+        {
             return a->procesos;
-        }else {
-            if(a->prioridad > p) {
+        }
+        else
+        {
+            if (a->prioridad > p)
+            {
                 return getProcsByPriority(a->izq, p);
-            } else {
+            }
+            else
+            {
                 return getProcsByPriority(a->dch, p);
             }
         }

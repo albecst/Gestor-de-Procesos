@@ -7,6 +7,8 @@
 #include "Lista/NodoListaCores.h"
 #include "Lista/ListaCores.h"
 #include "Core/Core.h"
+#include "ABB/NodoArbol.h"
+#include "ABB/Arbol.h"
 #include <vector>
 
 #include <iostream>
@@ -107,9 +109,11 @@ void Scheduler::freeCore(int core, int time)
 {
     // Libero un núcleo y actualizo su estado
     Core f = cores.getIndex(core);
+    Proceso saliente = f.proceso;
     f.proceso.PID = -1;
     cores.setIndex(f, core); // Aquí el núcleo se actualiza correctamente
 
+    abb.append(saliente, abb.getRoot());
     // Elimino el núcleo si hay más de los requeridos
     if (cores.getLength() > MIN_CORES)
     {
@@ -231,6 +235,10 @@ void Scheduler::printMostOccupiedCores()
         cout << core << " ";
     }
     cout << endl;
+}
+
+void Scheduler::printTree() {
+    abb.toString(abb.getRoot());
 }
 
 void Scheduler::showProcesos()
