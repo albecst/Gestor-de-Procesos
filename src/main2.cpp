@@ -11,7 +11,7 @@ void incrementTime(int cantidad) { SYS_CLK += cantidad; }
 // 1: Crear la pila de procesos
 void createProcessStack()
 {
-    Proceso p1(1, 1, 7, 0, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p1(1, 1, 7, 6, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
     Proceso p2(2, 2, 7, 1, -1, 1);
     Proceso p3(3, 3, 7, 2, -1, 1);
     Proceso p4(4, 4, 7, 3, -1, 1);
@@ -19,9 +19,22 @@ void createProcessStack()
     Proceso p6(6, 6, 7, 5, -1, 1);
 
     s.addProcessToStack(p1);
+    s.addProcessToStack(p1);
+    s.addProcessToStack(p2);
     s.addProcessToStack(p2);
     s.addProcessToStack(p3);
+    s.addProcessToStack(p3);
+    s.addProcessToStack(p3);
     s.addProcessToStack(p4);
+    s.addProcessToStack(p4);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
+    s.addProcessToStack(p5);
     s.addProcessToStack(p5);
     s.addProcessToStack(p6);
 
@@ -61,9 +74,7 @@ void simulateTime()
         cout << "----------------\n\n";
         s.toString();
     } while (!s.allProcessesCompleted());
-
     cout << "Ya han terminado de ejecutarse todos los procesos. \nSaliendo..." << endl;
-    s.printTree();
 }
 
 // 5: Mostrar los datos de la lista de núcleos
@@ -125,6 +136,17 @@ void printByPriority() {
     s.printPriorityList(p);
 }
 
+//10: Nivel de prioridad con mayor y menor carga de procesos ejecutados
+void printLoads() {
+    s.getMinLoad();
+    cout << endl;
+    s.getMaxLoad();
+    cout << endl;
+}
+
+//11: Mostrar arbol
+void printTree() { s.printTree(); }
+
 int main()
 {
     int opcion = 0;
@@ -141,6 +163,8 @@ int main()
         cout << "7. Consultar el número total de núcleos operativos\n";
         cout << "8. Simular el funcionamiento de todos los procesos\n";
         cout << "9. Mostrar todos los procesos que se ejecutaron por prioridad\n";
+        cout << "10. Mostrar nivel de prioridad con mayor y menor carga de procesos ejecutados\n";
+        cout << "11. Mostrar los datos almacenados en el ABBProcesos, ordenados por prioridad.\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -174,6 +198,12 @@ int main()
             break;
         case 9:
             printByPriority();
+            break;
+        case 10:
+            printLoads();
+            break;
+        case 11:
+            printTree();
             break;
         case 0:
             cout << "Saliendo..." << endl;

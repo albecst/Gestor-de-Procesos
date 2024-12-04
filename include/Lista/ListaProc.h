@@ -8,6 +8,7 @@ class ListaProc {
         plistap nodo; 
         int length;
         friend class Proceso;
+        friend class Arbol;
 
     public:
         ListaProc();

@@ -54,6 +54,9 @@ public:
     void printTree();
     void printPriorityList(int p);
 
+    int getMinLoad();
+    int getMaxLoad();
+
     void showProcesos();
     void showCores();
     vector<int> getTiempos();

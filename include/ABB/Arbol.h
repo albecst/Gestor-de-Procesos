@@ -7,6 +7,11 @@ class Arbol
     private:
         parbol raiz;
         int altura;
+
+        // Prioridad con mas procesos / Cuantos procesos tiene esa prioridad
+        int maxP, maxPN;
+        // Prioridad con menos procesos / Cuantos procesos tiene esa prioridad
+        int minP, minPN;
         friend class Scheduler;
     public:
         Arbol();
@@ -17,10 +22,9 @@ class Arbol
         bool isEmpty();
         int getSize();
 
-        parbol getMin();
-        Proceso getMinP();
-        parbol getMax();
-        Proceso getMaxP();
+        int getMin();
+        int getMax();
+
         parbol izq();
         parbol dch();
         parbol getRoot();
@@ -28,6 +32,7 @@ class Arbol
         void toString(parbol a);
         
         ListaProc getProcsByPriority(parbol a, int p);
+        int getNumProcsByPriority(parbol a, int p);
         
         void verInorden(parbol a);
         bool existsNode(parbol a ,int p);

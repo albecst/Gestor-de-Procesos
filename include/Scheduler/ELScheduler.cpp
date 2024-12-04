@@ -237,11 +237,13 @@ void Scheduler::printMostOccupiedCores()
     cout << endl;
 }
 
-void Scheduler::printTree() {
+void Scheduler::printTree()
+{
     abb.toString(abb.getRoot());
 }
 
-void Scheduler::printPriorityList(int p) {
+void Scheduler::printPriorityList(int p)
+{
     ListaProc dev = abb.getProcsByPriority(abb.getRoot(), p);
     dev.toString();
 }
@@ -259,4 +261,15 @@ void Scheduler::showCores()
 vector<int> Scheduler::getTiempos()
 {
     return tiempos;
+}
+
+int Scheduler::getMinLoad()
+{
+    cout << "Prioridad menos cargada: " << abb.minP << " con " << abb.minPN << " procesos de este tipo"<< endl;
+    return abb.getMin();
+}
+int Scheduler::getMaxLoad()
+{
+    cout << "Prioridad mas cargada: " << abb.maxP << " con " << abb.maxPN << " procesos de este tipo"<< endl;
+    return abb.getMax();
 }

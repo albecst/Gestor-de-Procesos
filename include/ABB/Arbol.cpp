@@ -9,12 +9,20 @@ Arbol::Arbol()
 {
     raiz = NULL;
     altura = 0;
+    maxPN = 0;
+    maxP = -1;
+    minPN = 0;
+    minP = -1;
 }
 
 Arbol::Arbol(Proceso p)
 {
     raiz = new NodoArbol(p.priority, ListaProc(p));
     altura = 0;
+    maxP = p.priority;
+    maxPN = 1;
+    minP = p.priority;
+    minPN = 1;
 }
 
 Arbol::~Arbol() {};
@@ -29,37 +37,14 @@ int Arbol::getSize()
     return altura;
 }
 
-parbol Arbol::getMin()
+int Arbol::getMin()
 {
-    parbol r_tmp = raiz;
-
-    if (altura == 0)
-    {
-        return raiz;
-    }
-
-    while (r_tmp->izq != NULL)
-    {
-        r_tmp = r_tmp->izq;
-    }
-
-    return r_tmp;
+    return minP;
 }
 
-parbol Arbol::getMax()
+int Arbol::getMax()
 {
-    parbol r_tmp = raiz;
-
-    if (altura == 0)
-    {
-        return raiz;
-    }
-
-    while (r_tmp->dch != NULL)
-    {
-        r_tmp = r_tmp->dch;
-    }
-    return r_tmp;
+    return maxP;
 }
 
 parbol Arbol::izq()
@@ -91,6 +76,16 @@ void Arbol::addProccessToList(parbol a, Proceso p)
         if (a->prioridad == p.priority)
         {
             a->procesos.append(p);
+            if (a->procesos.length > maxPN)
+            {
+                maxP = p.priority;
+                maxPN = a->procesos.length;
+            }
+            if (a->procesos.length < minPN)
+            {
+                minP = p.priority;
+                minPN = a->procesos.length;
+            }
         }
         else
         {
@@ -108,53 +103,52 @@ void Arbol::addProccessToList(parbol a, Proceso p)
 
 void Arbol::append(Proceso p, parbol a)
 {
-    if (raiz != NULL)
+    if (existsNode(raiz, p.priority))
     {
-        if (existsNode(raiz, p.priority))
+        // Buscar y append
+        addProccessToList(raiz, p);
+    }
+    else
+    {
+        // Crear nodo con lista unitaria
+
+        altura++;
+        if (raiz == NULL)
         {
-            // Buscar y append
-            addProccessToList(raiz, p);
+            raiz = new NodoArbol(p.priority, ListaProc(p));
+            minP = p.priority;
+            minPN = 1;
+            maxP = p.priority;
+            maxPN = 1;
+            return;
         }
-        else
+
+        if (a == NULL)
         {
-            // Crear nodo con lista unitaria
-
-            altura++;
-            if (raiz == NULL)
+            a = raiz;
+        }
+        if (p.priority < a->prioridad)
+        {
+            if (a->izq == NULL)
             {
-                raiz = new NodoArbol(p.priority, ListaProc(p));
-                return;
-            }
-
-            if (a == NULL)
-            {
-                a = raiz;
-            }
-            if (p.priority < a->prioridad)
-            {
-                if (a->izq == NULL)
-                {
-                    a->izq = new NodoArbol(p.priority, ListaProc(p));
-                }
-                else
-                {
-                    append(p, a->izq);
-                }
+                a->izq = new NodoArbol(p.priority, ListaProc(p));
             }
             else
             {
-                if (a->dch == NULL)
-                {
-                    a->dch = new NodoArbol(p.priority, ListaProc(p));
-                }
-                else
-                {
-                    append(p, a->dch);
-                }
+                append(p, a->izq);
             }
         }
-    } else {
-        raiz = new NodoArbol(p.priority, ListaProc(p));
+        else
+        {
+            if (a->dch == NULL)
+            {
+                a->dch = new NodoArbol(p.priority, ListaProc(p));
+            }
+            else
+            {
+                append(p, a->dch);
+            }
+        }
     }
 }
 
@@ -184,6 +178,32 @@ ListaProc Arbol::getProcsByPriority(parbol a, int p)
             else
             {
                 return getProcsByPriority(a->dch, p);
+            }
+        }
+    }
+}
+
+int Arbol::getNumProcsByPriority(parbol a, int p)
+{
+    if (!existsNode(raiz, p))
+    {
+        return -1;
+    }
+    else
+    {
+        if (a->prioridad == p)
+        {
+            return a->procesos.length;
+        }
+        else
+        {
+            if (a->prioridad > p)
+            {
+                return getNumProcsByPriority(a->izq, p);
+            }
+            else
+            {
+                return getNumProcsByPriority(a->dch, p);
             }
         }
     }
