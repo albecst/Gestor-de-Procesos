@@ -52,6 +52,7 @@ public:
     void printLeastOccupiedCores();
     void printMostOccupiedCores();
     void printTree();
+    void printPriorityList(int p);
 
     void showProcesos();
     void showCores();

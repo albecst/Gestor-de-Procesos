@@ -115,6 +115,16 @@ void simulateAllProcesses()
     cout << "El tiempo medio de estancia en el SO de los procesos es de: " << tiempoTotalP / numeroTiempos << " minutos." << endl;
 }
 
+// 9: Ver los procesos que se asignaron a un nivel de prioridad
+void printByPriority() {
+    int p = 0;
+
+    cout << "Que nivel de prioridad quieres consultar: ";
+    scanf("%d", &p);
+
+    s.printPriorityList(p);
+}
+
 int main()
 {
     int opcion = 0;
@@ -130,6 +140,7 @@ int main()
         cout << "6. Consultar el núcleo con menos procesos y el más ocupado\n";
         cout << "7. Consultar el número total de núcleos operativos\n";
         cout << "8. Simular el funcionamiento de todos los procesos\n";
+        cout << "9. Mostrar todos los procesos que se ejecutaron por prioridad\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -160,6 +171,9 @@ int main()
             break;
         case 8:
             simulateAllProcesses();
+            break;
+        case 9:
+            printByPriority();
             break;
         case 0:
             cout << "Saliendo..." << endl;

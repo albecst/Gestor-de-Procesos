@@ -241,6 +241,11 @@ void Scheduler::printTree() {
     abb.toString(abb.getRoot());
 }
 
+void Scheduler::printPriorityList(int p) {
+    ListaProc dev = abb.getProcsByPriority(abb.getRoot(), p);
+    dev.toString();
+}
+
 void Scheduler::showProcesos()
 {
     procesos.showAll();
