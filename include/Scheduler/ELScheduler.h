@@ -54,7 +54,6 @@ public:
     void printMostOccupiedCores();
     void printTree();
     void printPriorityList(int p);
-    void printPRTone();
 
     int getMinLoad();
     int getMaxLoad();

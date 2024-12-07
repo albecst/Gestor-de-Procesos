@@ -171,9 +171,7 @@ void addToABB()
 
 // 13: Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado, en orden numérico
 
-void printPRTone() {
-    s.printPRTone();
-}
+
 
 int main()
 {
