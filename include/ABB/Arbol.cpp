@@ -25,7 +25,8 @@ Arbol::Arbol(Proceso p)
     minPN = 1;
 }
 
-Arbol::~Arbol() {};
+Arbol::~Arbol() {
+};
 
 bool Arbol::isEmpty()
 {
@@ -157,6 +158,7 @@ parbol Arbol::getRoot()
     return raiz;
 }
 
+
 ListaProc Arbol::getProcsByPriority(parbol a, int p)
 {
     if (!existsNode(raiz, p))
@@ -209,11 +211,25 @@ int Arbol::getNumProcsByPriority(parbol a, int p)
     }
 }
 
+void Arbol::verInorden(parbol a)
+{
+    if (a == NULL)
+    {
+        return;
+    }
+    verInorden(a->izq);
+    a->procesos.toString();
+    cout << " ; ";
+    verInorden(a->dch);
+}
+
 void Arbol::toString(parbol a)
 {
-    if (a != NULL)
+    if (a && a != NULL)
     {
-        a->procesos.toString();
+
+        // a->procesos.toString();
+        cout << a->prioridad << endl;
 
         if (a->izq != NULL)
         {

@@ -7,4 +7,5 @@ NodoArbol::NodoArbol(int priority, ListaProc list, parbol i, parbol d) {
     dch = d;
 }
 
-NodoArbol::~NodoArbol() {}
+NodoArbol::~NodoArbol() {
+}
