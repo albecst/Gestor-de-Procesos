@@ -303,3 +303,27 @@ double Arbol::getAverageTimeByPriority(parbol a, int priority)
         return getAverageTimeByPriority(a->dch, priority);
     }
 }
+
+void Arbol::printAvgExecutionTimeAllPriorities(parbol a)
+{
+    if (a == NULL)
+        return;
+
+    cout << "Visitando nodo con prioridad: " << a->prioridad << endl;
+
+    double totalTime = 0;
+    int count = a->procesos.getLength();
+
+    for (int i = 0; i < count; i++)
+    {
+        totalTime += a->procesos.getIndex(i).getExecuteTime();
+    }
+
+    if (count > 0)
+    {
+        cout << "Prioridad: " << a->prioridad << " - Tiempo promedio de ejecución: " << totalTime / count << " minutos." << endl;
+    }
+
+    printAvgExecutionTimeAllPriorities(a->izq);
+    printAvgExecutionTimeAllPriorities(a->dch);
+}

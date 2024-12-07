@@ -46,6 +46,7 @@ public:
 
     void toString2(parbol a);
 
+    void printAvgExecutionTimeAllPriorities(parbol a);
 };
 
 #endif

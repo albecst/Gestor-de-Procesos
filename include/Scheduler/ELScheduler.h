@@ -64,6 +64,7 @@ public:
 
     void showPriorities();
     void printAvgExecutionTimeByPriority(int priority);
+    void printAvgExecutionTimeAllPriorities();
 };
 
 #endif

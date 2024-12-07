@@ -115,7 +115,6 @@ void Scheduler::freeCore(int core, int time)
 
     saliente.setExecuteTime(time - saliente.startTime);
 
-
     abb.append(saliente, abb.getRoot());
     // Elimino el núcleo si hay más de los requeridos
     if (cores.getLength() > MIN_CORES)
@@ -146,9 +145,9 @@ void Scheduler::check(int time)
             cout << "Valor de time antes de push_back para el proceso con PID " << core.proceso.PID << ": " << time << endl;
             cout << "Valor del startTime para el proceso con PID " << core.proceso.PID << ": " << aux[0] << endl;
             tiempos.push_back(time - aux[0]); // Usa el startTime almacenado en aux
-            
+
             cout << "El tiempo de ejecución de este proceso es de (version 2): " << core.proceso.getExecuteTime() << " minutos." << endl;
-            aux.erase(aux.begin());           // Elimina el startTime usado de aux
+            aux.erase(aux.begin()); // Elimina el startTime usado de aux
             freeCore(i, time);
         }
     }
@@ -270,29 +269,40 @@ vector<int> Scheduler::getTiempos()
 
 int Scheduler::getMinLoad()
 {
-    cout << "Prioridad menos cargada: " << abb.minP << " con " << abb.minPN << " procesos de este tipo"<< endl;
-    
+    cout << "Prioridad menos cargada: " << abb.minP << " con " << abb.minPN << " procesos de este tipo" << endl;
+
     return abb.getMin();
 }
 int Scheduler::getMaxLoad()
 {
-    cout << "Prioridad mas cargada: " << abb.maxP << " con " << abb.maxPN << " procesos de este tipo"<< endl;
+    cout << "Prioridad mas cargada: " << abb.maxP << " con " << abb.maxPN << " procesos de este tipo" << endl;
     return abb.getMax();
 }
 
-void Scheduler::addProcessToABB(Proceso p) {
+void Scheduler::addProcessToABB(Proceso p)
+{
     abb.append(p, abb.getRoot());
 }
 
-void Scheduler::showPriorities() {
+void Scheduler::showPriorities()
+{
     abb.showPriorities(abb.getRoot());
 }
 
-void Scheduler::printAvgExecutionTimeByPriority(int priority) {
+void Scheduler::printAvgExecutionTimeByPriority(int priority)
+{
     double avgTime = abb.getAverageTimeByPriority(abb.getRoot(), priority);
-    if (avgTime >= 0) {
+    if (avgTime >= 0)
+    {
         cout << "Tiempo promedio de ejecución para la prioridad " << priority << ": " << avgTime << " minutos." << endl;
-    } else {
+    }
+    else
+    {
         cout << "No hay procesos con la prioridad " << priority << "." << endl;
     }
+}
+
+void Scheduler::printAvgExecutionTimeAllPriorities()
+{
+    abb.printAvgExecutionTimeAllPriorities(abb.getRoot());
 }

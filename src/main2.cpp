@@ -184,8 +184,11 @@ void printAvgExecutionTimeByPriority()
     s.printAvgExecutionTimeByPriority(priority);
 }
 
-
 // 15: Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad, recorriendo el árbol en preorden
+void printAvgExecutionTimeAllPriorities()
+{
+    s.printAvgExecutionTimeAllPriorities();
+}
 
 int main()
 {
@@ -259,6 +262,7 @@ int main()
             printAvgExecutionTimeByPriority();
             break;
         case 15:
+            printAvgExecutionTimeAllPriorities();
             break;
         case 0:
             cout << "Saliendo..." << endl;
