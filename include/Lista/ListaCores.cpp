@@ -199,9 +199,8 @@ void ListaCores::toString()
         cout << current->proceso.PID << ", ";
         current = current->next;
     }*/
-
    for(int i = 0; i<length; i++) {
-        cout << "| Núcleo " << i << ": " << current->core.proceso.PID << " |";
+        cout << "| Núcleo " << i << ": " << "PID del proceso: " << current->core.proceso.PID << ", PPID: " << current->core.proceso.PPID << " |" << endl;
         current = current->next;
    }
 

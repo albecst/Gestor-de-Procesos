@@ -80,6 +80,7 @@ void simulateTime()
 // 5: Mostrar los datos de la lista de núcleos
 void showCoreDetails()
 {
+    cout << "De momento llevamos: " << SYS_CLK << " minutos." << endl;
     s.showCores();
 }
 
