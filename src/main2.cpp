@@ -109,7 +109,6 @@ void simulateAllProcesses()
         cout << endl;
     }
 
-    // TODO: Calcular el tiempo medio de estancia en el SO de los procesos (ya mañana que me duele la cabeza)
     vector<int> tiempos = s.getTiempos();
     float tiempoTotalP = 0;
 
@@ -126,30 +125,7 @@ void simulateAllProcesses()
     cout << "El tiempo medio de estancia en el SO de los procesos es de: " << tiempoTotalP / numeroTiempos << " minutos." << endl;
 }
 
-// 9: Ver los procesos que se asignaron a un nivel de prioridad
-void printByPriority()
-{
-    int p = 0;
-
-    cout << "Que nivel de prioridad quieres consultar: ";
-    scanf("%d", &p);
-
-    s.printPriorityList(p);
-}
-
-// 10: Nivel de prioridad con mayor y menor carga de procesos ejecutados
-void printLoads()
-{
-    s.getMinLoad();
-    cout << endl;
-    s.getMaxLoad();
-    cout << endl;
-}
-
-// 11: Mostrar arbol
-void printTree() { s.printTree(); }
-
-// 12: Añadir un proceso directamente al ABBProcesos, leyendo sus datos de teclado
+// 9: Añadir un proceso directamente al ABBProcesos, leyendo sus datos de teclado
 void addToABB()
 {
     // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
@@ -169,8 +145,34 @@ void addToABB()
     s.addProcessToABB(pAdd);
 }
 
-// 13: Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado, en orden numérico
+// 10: Mostrar arbol, por nivel de prioridad (TODO: Por nivel de prioridad)
+void printTree() { s.printTree(); }
 
+// 11: Ver los procesos que se asignaron a un nivel de prioridad
+void printByPriority()
+{
+    int p = 0;
+
+    cout << "Que nivel de prioridad quieres consultar: ";
+    scanf("%d", &p);
+
+    s.printPriorityList(p);
+}
+
+// 12: Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado, en orden numérico
+
+// 13: Nivel de prioridad con mayor y menor carga de procesos ejecutados
+void printLoads()
+{
+    s.getMinLoad();
+    cout << endl;
+    s.getMaxLoad();
+    cout << endl;
+}
+
+// 14:  Calcular y mostrar el tiempo promedio de ejecución de los procesos con una prioridad específica
+
+// 15: Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad, recorriendo el árbol en preorden
 
 
 int main()
@@ -188,10 +190,13 @@ int main()
         cout << "6. Consultar el núcleo con menos procesos y el más ocupado\n";
         cout << "7. Consultar el número total de núcleos operativos\n";
         cout << "8. Simular el funcionamiento de todos los procesos\n";
-        cout << "9. Mostrar todos los procesos que se ejecutaron por prioridad\n";
-        cout << "10. Mostrar nivel de prioridad con mayor y menor carga de procesos ejecutados\n";
-        cout << "11. Mostrar los datos almacenados en el ABBProcesos, ordenados por prioridad.\n";
-        cout << "12. Añadir un proceso directamente al ABBProcesos, leyendo sus datos de teclado\n";
+        cout << "9. Añadir un proceso directamente al ABBProcesos\n";
+        cout << "10. Mostrar arbol, por nivel de prioridad\n";
+        cout << "11. Ver los procesos que se asignaron a un nivel de prioridad\n";
+        cout << "12. Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado\n";
+        cout << "13. Nivel de prioridad con mayor y menor carga de procesos ejecutados\n";
+        cout << "14. Calcular y mostrar el tiempo promedio de ejecución de los procesos con una prioridad específica\n";
+        cout << "15. Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -224,18 +229,23 @@ int main()
             simulateAllProcesses();
             break;
         case 9:
-            printByPriority();
-            break;
-        case 10:
-            printLoads();
-            break;
-        case 11:
-            printTree();
-            break;
-        case 12:
             addToABB();
             break;
-
+        case 10:
+            printTree();
+            break;
+        case 11:
+            printByPriority();
+            break;
+        case 12:
+            break;
+        case 13:
+            printLoads();
+            break;
+        case 14:
+            break;
+        case 15:
+            break;
         case 0:
             cout << "Saliendo..." << endl;
             break;
