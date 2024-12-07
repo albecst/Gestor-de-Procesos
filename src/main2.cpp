@@ -16,7 +16,7 @@ void createProcessStack()
     Proceso p3(3, 3, 7, 2, -1, 1);
     Proceso p4(4, 4, 7, 3, -1, 1);
     Proceso p5(5, 5, 7, 4, -1, 1);
-    Proceso p6(6, 6, 7, 5, -1, 1);
+    Proceso p6(6, 6, 7, 9, -1, 1);
 
     s.addProcessToStack(p1);
     s.addProcessToStack(p1);
@@ -160,6 +160,10 @@ void printByPriority()
 }
 
 // 12: Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado, en orden numérico
+void showPriorities()
+{
+    s.showPriorities();
+}
 
 // 13: Nivel de prioridad con mayor y menor carga de procesos ejecutados
 void printLoads()
@@ -173,7 +177,6 @@ void printLoads()
 // 14:  Calcular y mostrar el tiempo promedio de ejecución de los procesos con una prioridad específica
 
 // 15: Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad, recorriendo el árbol en preorden
-
 
 int main()
 {
@@ -238,6 +241,7 @@ int main()
             printByPriority();
             break;
         case 12:
+            showPriorities();
             break;
         case 13:
             printLoads();

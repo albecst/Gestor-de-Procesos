@@ -227,8 +227,6 @@ void Arbol::toString(parbol a)
 {
     if (a && a != NULL)
     {
-
-        // a->procesos.toString();
         cout << a->prioridad << endl;
 
         if (a->izq != NULL)
@@ -242,4 +240,14 @@ void Arbol::toString(parbol a)
             toString(a->dch);
         }
     }
+}
+
+void Arbol::showPriorities(parbol a) {
+    if (a == NULL) return;
+
+    showPriorities(a->dch);
+    if (a->procesos.length > 0) {
+        cout << "Prioridad: " << a->prioridad << endl;
+    }
+    showPriorities(a->izq);
 }

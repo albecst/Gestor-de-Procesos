@@ -14,6 +14,7 @@ class Arbol
         int minP, minPN;
         friend class Scheduler;
 
+
     public:
         Arbol();
         Arbol(Proceso p);
@@ -38,7 +39,8 @@ class Arbol
         void verInorden(parbol a);
         bool existsNode(parbol a ,int p);
         void addProccessToList(parbol a, Proceso p);
-
+        
+        void showPriorities(parbol a); 
 };
 
 #endif

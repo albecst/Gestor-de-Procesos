@@ -278,3 +278,7 @@ int Scheduler::getMaxLoad()
 void Scheduler::addProcessToABB(Proceso p) {
     abb.append(p, abb.getRoot());
 }
+
+void Scheduler::showPriorities() {
+    abb.showPriorities(abb.getRoot());
+}

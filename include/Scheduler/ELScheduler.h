@@ -61,6 +61,8 @@ public:
     void showProcesos();
     void showCores();
     vector<int> getTiempos();
+
+    void showPriorities();
 };
 
 #endif
