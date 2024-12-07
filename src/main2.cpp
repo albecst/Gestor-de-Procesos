@@ -127,7 +127,8 @@ void simulateAllProcesses()
 }
 
 // 9: Ver los procesos que se asignaron a un nivel de prioridad
-void printByPriority() {
+void printByPriority()
+{
     int p = 0;
 
     cout << "Que nivel de prioridad quieres consultar: ";
@@ -136,16 +137,43 @@ void printByPriority() {
     s.printPriorityList(p);
 }
 
-//10: Nivel de prioridad con mayor y menor carga de procesos ejecutados
-void printLoads() {
+// 10: Nivel de prioridad con mayor y menor carga de procesos ejecutados
+void printLoads()
+{
     s.getMinLoad();
     cout << endl;
     s.getMaxLoad();
     cout << endl;
 }
 
-//11: Mostrar arbol
+// 11: Mostrar arbol
 void printTree() { s.printTree(); }
+
+// 12: Añadir un proceso directamente al ABBProcesos, leyendo sus datos de teclado
+void addToABB()
+{
+    // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    int pid, start, life, priority, ppid;
+    cout << "Introduce el PID: " << endl;
+    scanf("%d", &pid);
+    cout << "Introduce la hora de inicio: " << endl;
+    scanf("%d", &start);
+    cout << "Introduce la duracion: " << endl;
+    scanf("%d", &life);
+    cout << "Introduce la prioridad: " << endl;
+    scanf("%d", &priority);
+    cout << "Introduce el PPID: " << endl;
+    scanf("%d", &ppid);
+
+    Proceso pAdd(pid, start, life, priority, -1, ppid);
+    s.addProcessToABB(pAdd);
+}
+
+// 13: Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado, en orden numérico
+
+void printPRTone() {
+    s.printPRTone();
+}
 
 int main()
 {
@@ -165,6 +193,7 @@ int main()
         cout << "9. Mostrar todos los procesos que se ejecutaron por prioridad\n";
         cout << "10. Mostrar nivel de prioridad con mayor y menor carga de procesos ejecutados\n";
         cout << "11. Mostrar los datos almacenados en el ABBProcesos, ordenados por prioridad.\n";
+        cout << "12. Añadir un proceso directamente al ABBProcesos, leyendo sus datos de teclado\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -205,6 +234,10 @@ int main()
         case 11:
             printTree();
             break;
+        case 12:
+            addToABB();
+            break;
+
         case 0:
             cout << "Saliendo..." << endl;
             break;

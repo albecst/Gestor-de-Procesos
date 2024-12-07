@@ -266,10 +266,19 @@ vector<int> Scheduler::getTiempos()
 int Scheduler::getMinLoad()
 {
     cout << "Prioridad menos cargada: " << abb.minP << " con " << abb.minPN << " procesos de este tipo"<< endl;
+    
     return abb.getMin();
 }
 int Scheduler::getMaxLoad()
 {
     cout << "Prioridad mas cargada: " << abb.maxP << " con " << abb.maxPN << " procesos de este tipo"<< endl;
     return abb.getMax();
+}
+
+void Scheduler::addProcessToABB(Proceso p) {
+    abb.append(p, abb.getRoot());
+}
+
+void Scheduler::printPRTone() {
+    
 }

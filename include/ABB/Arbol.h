@@ -13,6 +13,7 @@ class Arbol
         // Prioridad con menos procesos / Cuantos procesos tiene esa prioridad
         int minP, minPN;
         friend class Scheduler;
+        
     public:
         Arbol();
         Arbol(Proceso p);

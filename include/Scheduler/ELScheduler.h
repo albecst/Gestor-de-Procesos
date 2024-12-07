@@ -40,6 +40,7 @@ public:
     void popCore(int idx);
     void freeCore(int core, int time);
     void check(int time);
+    void addProcessToABB(Proceso p);
 
     void sortStack();
 
@@ -53,6 +54,7 @@ public:
     void printMostOccupiedCores();
     void printTree();
     void printPriorityList(int p);
+    void printPRTone();
 
     int getMinLoad();
     int getMaxLoad();
