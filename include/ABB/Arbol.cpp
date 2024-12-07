@@ -158,7 +158,6 @@ parbol Arbol::getRoot()
     return raiz;
 }
 
-
 ListaProc Arbol::getProcsByPriority(parbol a, int p)
 {
     if (!existsNode(raiz, p))
@@ -242,12 +241,65 @@ void Arbol::toString(parbol a)
     }
 }
 
-void Arbol::showPriorities(parbol a) {
-    if (a == NULL) return;
+void Arbol::toString2(parbol a)
+{
+    if (a != NULL)
+    {
+        a->procesos.toString();
+
+        if (a->izq != NULL)
+        {
+            toString(a->izq);
+        }
+
+        if (a->dch != NULL)
+        {
+            cout << "     ";
+            toString(a->dch);
+        }
+    }
+}
+
+void Arbol::showPriorities(parbol a)
+{
+    if (a == NULL)
+        return;
 
     showPriorities(a->dch);
-    if (a->procesos.length > 0) {
+    if (a->procesos.length > 0)
+    {
         cout << "Prioridad: " << a->prioridad << endl;
     }
     showPriorities(a->izq);
+}
+
+double Arbol::getAverageTimeByPriority(parbol a, int priority)
+{
+    if (a == NULL)
+        return -1;
+
+    if (a->prioridad == priority)
+    {
+        double totalTime = 0;
+        int count = a->procesos.getLength();
+
+        cout << "Hay esta cantidad de procesos: " << count << endl;
+        a->procesos.toString();
+        for (int i = 0; i < a->procesos.getLength(); i++)
+        {
+            cout << "Proceso: " << a->procesos.getIndex(i).PID << endl;
+            totalTime += a->procesos.getIndex(i).getExecuteTime();
+            cout << "Tiempo de ejecución hasta ahora: " << a->procesos.getIndex(i).getExecuteTime() << endl;
+        }
+
+        return count > 0 ? totalTime / count : -1;
+    }
+    else if (priority < a->prioridad)
+    {
+        return getAverageTimeByPriority(a->izq, priority);
+    }
+    else
+    {
+        return getAverageTimeByPriority(a->dch, priority);
+    }
 }

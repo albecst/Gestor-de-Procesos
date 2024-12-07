@@ -11,6 +11,7 @@ class Proceso {
         int ttl;
         int priority;
         int core;
+        int executeTime;
 
         friend class Pila;
         friend class Cola;
@@ -27,6 +28,9 @@ class Proceso {
         void decrementLifeTime(int quantity);
         int getPriority();
         void toString();
+
+        double getExecuteTime();
+        void setExecuteTime(int tiempo);
 
 };
 

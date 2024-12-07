@@ -44,3 +44,11 @@ void Proceso::toString()
     cout << "Priority: " << priority << endl;
     cout << "Core: " << core << endl;
 }
+
+double Proceso::getExecuteTime() {
+    return executeTime;
+}
+
+void Proceso::setExecuteTime(int tiempo) {
+    executeTime = tiempo;
+}

@@ -113,6 +113,9 @@ void Scheduler::freeCore(int core, int time)
     f.proceso.PID = -1;
     cores.setIndex(f, core); // Aquí el núcleo se actualiza correctamente
 
+    saliente.setExecuteTime(time - saliente.startTime);
+
+
     abb.append(saliente, abb.getRoot());
     // Elimino el núcleo si hay más de los requeridos
     if (cores.getLength() > MIN_CORES)
@@ -143,6 +146,8 @@ void Scheduler::check(int time)
             cout << "Valor de time antes de push_back para el proceso con PID " << core.proceso.PID << ": " << time << endl;
             cout << "Valor del startTime para el proceso con PID " << core.proceso.PID << ": " << aux[0] << endl;
             tiempos.push_back(time - aux[0]); // Usa el startTime almacenado en aux
+            
+            cout << "El tiempo de ejecución de este proceso es de (version 2): " << core.proceso.getExecuteTime() << " minutos." << endl;
             aux.erase(aux.begin());           // Elimina el startTime usado de aux
             freeCore(i, time);
         }
@@ -281,4 +286,13 @@ void Scheduler::addProcessToABB(Proceso p) {
 
 void Scheduler::showPriorities() {
     abb.showPriorities(abb.getRoot());
+}
+
+void Scheduler::printAvgExecutionTimeByPriority(int priority) {
+    double avgTime = abb.getAverageTimeByPriority(abb.getRoot(), priority);
+    if (avgTime >= 0) {
+        cout << "Tiempo promedio de ejecución para la prioridad " << priority << ": " << avgTime << " minutos." << endl;
+    } else {
+        cout << "No hay procesos con la prioridad " << priority << "." << endl;
+    }
 }

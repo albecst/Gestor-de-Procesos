@@ -11,15 +11,15 @@ void incrementTime(int cantidad) { SYS_CLK += cantidad; }
 // 1: Crear la pila de procesos
 void createProcessStack()
 {
-    Proceso p1(1, 1, 7, 6, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
-    Proceso p2(2, 2, 7, 1, -1, 1);
-    Proceso p3(3, 3, 7, 2, -1, 1);
-    Proceso p4(4, 4, 7, 3, -1, 1);
-    Proceso p5(5, 5, 7, 4, -1, 1);
-    Proceso p6(6, 6, 7, 9, -1, 1);
+    Proceso p1(6, 1, 7, 6, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
+    Proceso p2(1, 2, 7, 1, -1, 1);
+    Proceso p3(2, 3, 7, 2, -1, 1);
+    Proceso p4(3, 4, 7, 3, -1, 1);
+    Proceso p5(4, 5, 7, 4, -1, 1);
+    Proceso p6(9, 6, 7, 9, -1, 1);
 
     s.addProcessToStack(p1);
-    s.addProcessToStack(p1);
+    // s.addProcessToStack(p1);
     s.addProcessToStack(p2);
     s.addProcessToStack(p2);
     s.addProcessToStack(p3);
@@ -145,7 +145,7 @@ void addToABB()
     s.addProcessToABB(pAdd);
 }
 
-// 10: Mostrar arbol, por nivel de prioridad (TODO: Por nivel de prioridad)
+// 10: Mostrar arbol, por nivel de prioridad (TODO: Por nivel de prioridad ordenado)
 void printTree() { s.printTree(); }
 
 // 11: Ver los procesos que se asignaron a un nivel de prioridad
@@ -175,6 +175,14 @@ void printLoads()
 }
 
 // 14:  Calcular y mostrar el tiempo promedio de ejecución de los procesos con una prioridad específica
+void printAvgExecutionTimeByPriority()
+{
+    int priority;
+    cout << "Introduce el nivel de prioridad: ";
+    cin >> priority;
+    s.printAvgExecutionTimeByPriority(priority);
+}
+
 
 // 15: Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad, recorriendo el árbol en preorden
 
@@ -247,6 +255,7 @@ int main()
             printLoads();
             break;
         case 14:
+            printAvgExecutionTimeByPriority();
             break;
         case 15:
             break;

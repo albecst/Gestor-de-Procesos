@@ -201,7 +201,7 @@ void ListaProc::toString()
     cout << "[";
    for(int i = 0; i<length; i++) {
         //cout << "Prioridad" << current->proceso.priority << " in index " << current->proceso.PID << " |";
-        cout << "\t PID: " << current->proceso.PID << " con prioridad: " << current->proceso.priority << " en index: " << i << "\t;";
+        cout << "\t PID: " << current->proceso.PID << " con prioridad: " << current->proceso.priority << " y tiempo de ejecución: "<< current->proceso.executeTime <<  " en index: " << i << "\t;";
         current = current->next;
    }
 

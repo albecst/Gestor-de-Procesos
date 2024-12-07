@@ -63,6 +63,7 @@ public:
     vector<int> getTiempos();
 
     void showPriorities();
+    void printAvgExecutionTimeByPriority(int priority);
 };
 
 #endif
