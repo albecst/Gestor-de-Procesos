@@ -12,12 +12,10 @@ Este proyecto es un gestor de procesos que simula el funcionamiento de un sistem
 ## Cómo utilizarlo
 
 Para utilizar la parte 1 introducir en la terminal:
-* ```g++ -I./include src/main.cpp -o main```
-* ```./main```
+* ```g++ -I./include src/main.cpp -o main && ./main```
 
 Para utilizar la parte 2 introducir en la terminal:
-* ```g++ -I./include src/main2.cpp -o main2```
-* ```./main2```
+* ```g++ -I./include src/main2.cpp -o main2 && ./main2```
 
 *Hay disponibles dos sh para facilitar la compilación, pero dependiendo de la codificación del equipo puede mostrar un caracter NULL*
 
