@@ -8,6 +8,7 @@ Este proyecto es un gestor de procesos que simula el funcionamiento de un sistem
 - **Gestión de procesos**: Mueve procesos a la cola de espera, asigna procesos a núcleos libres y libera núcleos cuando el tiempo de vida del proceso ha terminado.
 - **Simulación de tiempo**: Simula el paso del tiempo y muestra el estado de la pila de procesos, la cola de espera y los núcleos en ejecución.
 - **Cálculo de tiempos**: Calcula el tiempo total y medio de estancia de los procesos en el sistema operativo.
+- **Árboles de búsqueda**: Se implementan árboles de búsqueda, que ayudarán a realizar consultas del código.
 
 ## Cómo utilizarlo
 
@@ -42,6 +43,13 @@ Al ejecutar el programa, se mostrará un menú con las siguientes opciones:
 6. Consultar el núcleo con menos procesos y el más ocupado
 7. Consultar el número total de núcleos operativos
 8. Simular el funcionamiento de todos los procesos
+9. Añadir un proceso directamente al ABBProcesos
+10. Mostrar arbol, por nivel de prioridad
+11. Ver los procesos que se asignaron a un nivel de prioridad
+12. Mostrar todos los niveles de prioridad que han tenido al menos un proceso ejecutado
+13. Nivel de prioridad con mayor y menor carga de procesos ejecutados
+14. Calcular y mostrar el tiempo promedio de ejecución de los procesos con una prioridad específica
+15. Calcular y mostrar el tiempo promedio de ejecución de los procesos en cada nivel de prioridad
 0. Salir
 
 Selecciona una opción para realizar la acción correspondiente.
