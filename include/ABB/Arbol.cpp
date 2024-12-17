@@ -230,12 +230,14 @@ void Arbol::toString(parbol a)
 
         if (a->izq != NULL)
         {
+            cout << a->prioridad << " tiene de hijo izquierdo a : ";
             toString(a->izq);
         }
 
         if (a->dch != NULL)
         {
             cout << "     ";
+            cout << a->prioridad << " tiene de hijo derecho a : ";
             toString(a->dch);
         }
     }

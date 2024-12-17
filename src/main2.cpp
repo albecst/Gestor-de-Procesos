@@ -11,16 +11,23 @@ void incrementTime(int cantidad) { SYS_CLK += cantidad; }
 // 1: Crear la pila de procesos
 void createProcessStack()
 {
+    Proceso p0(0, 0, 0, 4, -1, -1);
     Proceso p1(6, 1, 7, 6, -1, 1); // PID, START_TIME, LIFE_TIME, PRIORITY, CORE, PPID
-    Proceso p2(1, 2, 7, 1, -1, 1);
-    Proceso p3(2, 3, 7, 2, -1, 1);
+    Proceso p2(1, 2, 7, 6, -1, 1);
+    Proceso p3(2, 3, 7, 6, -1, 1);
     Proceso p4(3, 4, 7, 3, -1, 1);
+    Proceso p7(3, 4, 7, 2, -1, 1);
     Proceso p5(4, 5, 7, 4, -1, 1);
     Proceso p6(9, 6, 7, 9, -1, 1);
 
+    s.addProcessToABB(p0);
+
+    s.addProcessToStack(p6);
     s.addProcessToStack(p1);
     // s.addProcessToStack(p1);
     s.addProcessToStack(p2);
+    s.addProcessToStack(p7);
+    s.addProcessToStack(p7);
     s.addProcessToStack(p2);
     s.addProcessToStack(p3);
     s.addProcessToStack(p3);
@@ -36,7 +43,6 @@ void createProcessStack()
     s.addProcessToStack(p5);
     s.addProcessToStack(p5);
     s.addProcessToStack(p5);
-    s.addProcessToStack(p6);
 
     cout << "Procesos creados y añadidos a la pila." << endl;
 }
